@@ -6,7 +6,8 @@ import ProviderWrapper from './ProviderWrapper';
 
 export const metadata = {
   title: 'IXN Projects Marking Web App',
-  description: 'It aims to streamline the process for lecturers and TAs to manage and assess the performance of students in project-based classes.'
+  description:
+    'It aims to streamline the process for lecturers and TAs to manage and assess the performance of students in project-based classes.'
 };
 
 export default function RootLayout({ children }) {
@@ -22,4 +23,3 @@ export default function RootLayout({ children }) {
 RootLayout.propTypes = {
   children: PropTypes.node
 };
-

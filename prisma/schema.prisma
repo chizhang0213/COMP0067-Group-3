@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://localhost:27017/marking"
+}
+
+model TAs {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdDate DateTime @db.Date
+  firstName   String
+  isActive    Boolean
+  lastName    String
+  lecturerId  String
+  uclId       Int
+  username    String
+}
+
+model lecturers {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdDate DateTime @db.Date
+  firstName   String
+  isActive    Boolean
+  lastName    String
+  uclId       Int
+  username    String
+}
+
+model modules {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  maxSize  Int
+  moduleNo String
+  title    String
+}
+
+model students {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
