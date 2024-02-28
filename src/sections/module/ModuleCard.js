@@ -15,7 +15,6 @@ export default function ModuleCard({ data }) {
   const TACount = 0;
   const theme = useTheme();
   const router = useRouter();
-
   const handleClickView = (moduleNo) => {
     router.push(`/home/${moduleNo}`);
   };
