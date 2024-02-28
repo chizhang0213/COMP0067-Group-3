@@ -13,9 +13,9 @@ import {
   Box,
   useMediaQuery,
   Button,
-  Checkbox,
+  // Checkbox,
   Divider,
-  FormControlLabel,
+  // FormControlLabel,
   FormHelperText,
   Grid,
   Link,
@@ -49,7 +49,7 @@ const Google = '/assets/images/icons/google.svg';
 
 const AuthLogin = ({ providers, csrfToken }) => {
   const matchDownSM = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [capsWarning, setCapsWarning] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -71,32 +71,6 @@ const AuthLogin = ({ providers, csrfToken }) => {
 
   return (
     <>
-      <Grid item xs={12}>
-        <AnimateButton>
-          <Button
-            disableElevation
-            fullWidth
-            size="large"
-            variant="contained"
-            color="success"
-            onClick={() =>
-              signIn('login', {
-                redirect: true,
-                email: 'info@codedthemes.com',
-                password: '123456',
-                callbackUrl: APP_DEFAULT_PATH
-              })
-            }
-          >
-            UCL Single Sign On
-          </Button>
-        </AnimateButton>
-      </Grid>
-
-      <Divider sx={{ mt: 2 }}>
-        <Typography variant="caption"> System Account </Typography>
-      </Divider>
-
       <Formik
         initialValues={{
           email: 'info@codedthemes.com',
@@ -231,7 +205,9 @@ const AuthLogin = ({ providers, csrfToken }) => {
           </form>
         )}
       </Formik>
-
+      <Divider sx={{ mt: 2 }}>
+        <Typography variant="caption"> Login with</Typography>
+      </Divider>
       {providers && (
         <Stack
           direction="row"
@@ -283,6 +259,27 @@ const AuthLogin = ({ providers, csrfToken }) => {
           })}
         </Stack>
       )}
+      <Grid item xs={12}>
+        <AnimateButton>
+          <Button
+            disableElevation
+            fullWidth
+            size="large"
+            variant="contained"
+            color="success"
+            onClick={() =>
+              signIn('login', {
+                redirect: true,
+                emial: 'info@codethemes.com',
+                password: '123456',
+                callbackUrl: APP_DEFAULT_PATH
+              })
+            }
+          >
+            UCL SSO Login
+          </Button>
+        </AnimateButton>
+      </Grid>
       {!providers && (
         <Box sx={{ mt: 3 }}>
           <FirebaseSocial />
