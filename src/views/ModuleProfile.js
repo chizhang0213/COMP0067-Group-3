@@ -38,7 +38,7 @@ import {
 
 // ==============================|| Module - ModuleNo ||============================== //;
 
-const ModuleProfile = ({ tab, moduleNo, title }) => {
+const ModuleProfile = ({ tab, moduleNo, moduleTitle }) => {
   const router = useRouter();
   const { menuMaster } = useGetMenuMaster();
 
@@ -81,7 +81,7 @@ const ModuleProfile = ({ tab, moduleNo, title }) => {
     case 'basic':
     default:
       breadcrumbTitle = moduleNo;
-      breadcrumbHeading = title;
+      breadcrumbHeading = moduleTitle;
   }
 
   const [value, setValue] = useState(tab);
@@ -134,7 +134,7 @@ const ModuleProfile = ({ tab, moduleNo, title }) => {
 
 ModuleProfile.propTypes = {
   tab: PropTypes.string,
-  title: PropTypes.string,
+  moduleTitle: PropTypes.string,
   moduleNo: PropTypes.string
 };
 

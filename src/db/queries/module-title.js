@@ -1,7 +1,11 @@
-import db from '../index.js';
+'use server';
 
-export async function fetchTitleByModuleNo({ moduleNo }) {
-  const course = await db.modules.findUnique({
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
+
+export async function fetchTitleByModuleNo(moduleNo) {
+  const course = await prisma.modules.findFirst({
     where: {
       moduleNo: moduleNo
     },
@@ -9,8 +13,6 @@ export async function fetchTitleByModuleNo({ moduleNo }) {
       title: true
     }
   });
-
-  console.log(course);
 
   return course?.title;
 }
