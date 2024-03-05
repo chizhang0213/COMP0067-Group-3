@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import ModuleProfile from '../../../../views/ModuleProfile';
+import ModuleProfile from '../../../../../../views/ModuleProfile';
 import { useParams } from 'next/navigation';
 import { fetchTitleByModuleNo } from 'db/queries/module-title';
 
 export default function ModulePage() {
-  const { tab, moduleNo } = useParams();
+  const { tab, moduleNo, academicYear } = useParams();
   const [moduleTitle, setTitle] = useState('');
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function ModulePage() {
 
   return (
     <>
-      <ModuleProfile tab={tab} moduleNo={moduleNo} moduleTitle={moduleTitle} />
+      <ModuleProfile tab={tab} moduleNo={moduleNo} moduleTitle={moduleTitle} academicYear={academicYear} />
     </>
   );
 }

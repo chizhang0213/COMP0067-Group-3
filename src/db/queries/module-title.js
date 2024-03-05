@@ -1,11 +1,9 @@
 'use server';
 
-const { PrismaClient } = require('@prisma/client');
-
-const prisma = new PrismaClient();
+import db from 'db/index';
 
 export async function fetchTitleByModuleNo(moduleNo) {
-  const course = await prisma.modules.findFirst({
+  const course = await db.modules.findFirst({
     where: {
       moduleNo: moduleNo
     },
@@ -13,6 +11,5 @@ export async function fetchTitleByModuleNo(moduleNo) {
       title: true
     }
   });
-
   return course?.title;
 }
