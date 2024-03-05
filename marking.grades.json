@@ -1,0 +1,15 @@
+[{
+  "_id": {
+    "$oid": "65e5b882a41bb85baf63e0af"
+  },
+  "moduleId": "65e0df9bdc6ad2d10f3ff4e4",
+  "score": [
+    {
+      "teamNo": 1,
+      "projectTitle": "Mobile app and website",
+      "lecMark": {},
+      "TAMark": {},
+      "individual": []
+    }
+  ]
+}]

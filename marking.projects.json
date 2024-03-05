@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "65e0e423dc6ad2d10f3ff4ff"
+  },
+  "projects": [
+    {
+      "teamNo": 1,
+      "projectTitle": "Mobile app and website",
+      "teamMember": [
+        23055555,
+        23055556,
+        23055557,
+        23055558
+      ],
+      "TAId": "65e0e042dc6ad2d10f3ff4e7",
+      "leader": 23055555
+    },
+    {
+      "teamNo": 2,
+      "projectTitle": "IXN marking web app",
+      "teamMember": [
+        23054858
+      ],
+      "TAId": "65dd0306bb09a1a833ba1c3b",
+      "leader": 23054858
+    }
+  ],
+  "moduleId": "65e0df9bdc6ad2d10f3ff4e4"
+},
+{
+  "_id": {
+    "$oid": "65e6f78c286d0e1e13656703"
+  },
+  "projects": [],
+  "moduleId": "65e6f634286d0e1e136566f7"
+}]
