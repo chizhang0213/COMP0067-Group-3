@@ -57,7 +57,7 @@ export const fuzzySort = (rowA, rowB, columnId) => {
 
 // ==============================|| REACT TABLE ||============================== //
 
-function ReactTable({ columns, projects }) {
+function ReactTable({ columns, projects, moduleNo, academicYear }) {
   const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState('');
   const [TANames, setTANames] = useState({});
@@ -129,7 +129,7 @@ function ReactTable({ columns, projects }) {
                 <TableRow key={index}>
                   <TableCell align="center" width={150}>{project.teamNo}
                   </TableCell>
-                  <TableCell>{project.projectTitle}</TableCell>
+                  <TableCell align="center">{project.projectTitle}</TableCell>
                   <TableCell align="center">{project.teamMember.length}</TableCell>
                   <TableCell align="center">{TANames[project.TAId]}</TableCell>
                   <TableCell align="center">Not Marked</TableCell>
@@ -140,7 +140,7 @@ function ReactTable({ columns, projects }) {
                           <EyeOutlined />
                         </IconButton>
                       </Link>
-                      <Link href={`/home`} passHref legacyBehavior>
+                      <Link href={`/home/${moduleNo}/${academicYear}/projects/${project.teamNo}`} passHref legacyBehavior>
                         <IconButton>
                           <ProfileOutlined />
                         </IconButton>
@@ -215,19 +215,8 @@ const FilteringTable = () => {
       },
       {
         header: 'Status',
-        getValue: () => 'Not Marked', // 固定为 "Not Marked"
+        getValue: () => 'Not Marked',
         cell: (props) => <Chip color="error" label={props.getValue()} size="small" variant="light" />,
-        // cell: (props) => {
-        //   switch (props.getValue()) {
-        //     case 'Processing':
-        //       return <Chip color="warning" label="Processing" size="small" variant="light" />;
-        //     case 'Marked':
-        //       return <Chip color="success" label="Marked" size="small" variant="light" />;
-        //     case 'Not Marked':
-        //     default:
-        //       return <Chip color="error" label="Not Marked" size="small" variant="light" />;
-        //   }
-        // },
         meta: {
           className: 'cell-center'
         }
@@ -245,7 +234,7 @@ const FilteringTable = () => {
     []
   );
 
-  return <ReactTable projects={projects} columns={columns} />;
+  return <ReactTable projects={projects} columns={columns} moduleNo={moduleNo} academicYear={academicYearInt} />;
 };
 
 FilteringTable.propTypes = {
