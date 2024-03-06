@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 // material-ui
 import {
+  Accordion,AccordionSummary, AccordionDetails,
   Button,
   Chip,
   Collapse,
@@ -27,7 +28,8 @@ import { fetchStudentsByUCLId } from 'db/queries/teamMember-students';
 import { fetchLeaderByUCLId } from 'db/queries/uclId-leader';
 
 // assets
-import { UserOutlined, EnvironmentOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
+import { UserOutlined, ReadOutlined, EnvironmentOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
+import ScrollX from 'components/ScrollX';
 
 // ==============================|| ACCOUNT PROFILE - BASIC ||============================== //
 
@@ -68,7 +70,7 @@ const TabProfile = () => {
           {showMainCard ? 'Hide' : 'Show'} Members
         </Button>
       </Stack>
-      <Grid item xs={12}>
+      <ScrollX item xs={12}>
         <Collapse in={showMainCard} timeout="auto" unmountOnExit>
           <Grid container spacing={3}>
             <Grid item xs={12}>
@@ -80,63 +82,78 @@ const TabProfile = () => {
                   boxShadow: 'none'
                 }}
               >
-                  <Grid item xs={3}>
-                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginTop: 'auto', marginBottom: '10px' }}>
-                      <UserOutlined style={{ marginRight: '8px' }} />
+                <Grid item xs={3}>
+                  <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginTop: 'auto', marginBottom: '10px' }}>
+                    <UserOutlined style={{ marginRight: '8px' }} />
                     <Typography variant="h6" style={{ fontWeight: 'bold' }}>
                       Profile
                     </Typography>
                   </div>
-                  </Grid>
-                  <Grid container spacing={3} justifyContent="center">
-                    {team.map((member, index) => (
-                      <Grid item xs={3} key={index}>
-                        <MainCard
-                          style={{
-                            margin: 'auto',
-                            border: 'none',
-                            boxShadow: 'none',
-                            borderRadius: '10px'
-                          }}
-                        >
-                          <Grid container>
-                            <Grid item xs={12}>
-                              <Stack direction="row" alignItems="center" spacing={2}>
-                                <Avatar alt="Avatar" size="xl" src="/assets/images/users/default.png" />
-                                <Stack spacing={0.5}>
-                                  <Typography>
-                                    <strong>Name:</strong> {`${member.firstName} ${member.lastName}`}
-                                  </Typography>
-                                  <Typography noWrap>
-                                    <strong>Email:</strong> {member.email}
-                                  </Typography>
-                                  <Typography>
-                                    <strong>Student ID:</strong> {member.uclId}
-                                  </Typography>
-                                </Stack>
+                </Grid>
+                <Grid container spacing={3} justifyContent="center">
+                  {team.map((member, index) => (
+                    <Grid item xs={3} key={index}>
+                      <MainCard
+                        style={{
+                          margin: 'auto',
+                          border: 'none',
+                          boxShadow: 'none',
+                          borderRadius: '10px'
+                        }}
+                      >
+                        <Grid container>
+                          <Grid item xs={12}>
+                            <Stack direction="row" alignItems="center" spacing={2}>
+                              <Avatar alt="Avatar" size="xl" src="/assets/images/users/default.png" />
+                              <Stack spacing={0.5}>
+                                <Typography>
+                                  <strong>Name:</strong> {`${member.firstName} ${member.lastName}`}
+                                </Typography>
+                                <Typography noWrap>
+                                  <strong>Email:</strong> {member.email}
+                                </Typography>
+                                <Typography>
+                                  <strong>Student ID:</strong> {member.uclId}
+                                </Typography>
                               </Stack>
-                            </Grid>
+                            </Stack>
                           </Grid>
-                        </MainCard>
-                      </Grid>
-                    ))}
-                  </Grid>
+                        </Grid>
+                      </MainCard>
+                    </Grid>
+                  ))}
+                </Grid>
               </MainCard>
             </Grid>
           </Grid>
         </Collapse>
-      </Grid>
+      </ScrollX>
       <Grid item xs={12}>
-        <MainCard
-          style={{
-            margin: 'auto',
-            border: 'none',
-            backgroundColor: '#f5f5f5',
-            boxShadow: 'none'
-          }}
-        >
-          <Typography variant="h5" style={{ padding: '20px' }}>Assessment</Typography>
-        </MainCard>
+      <Accordion
+            style={{
+              margin: 'auto',
+              border: 'none',
+              backgroundColor: '#f5f5f5',
+              boxShadow: 'none'
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ReadOutlined />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+              style={{alignItems: 'center'}} // 确保内容在同一行垂直居中
+            >
+              <ReadOutlined style={{ marginRight: '8px' }} />
+              <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+                Assessment
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>
+                在这里可以放置考核内容或其他相关信息。
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
       </Grid>
     </Grid>
   );
