@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { Box, Typography, Grid } from '@mui/material';
 
 // third-party
 import ReactApexChart from 'react-apexcharts';
@@ -119,9 +119,13 @@ const IncomeAreaChart = ({ slot }) => {
   }, [slot]);
 
   return (
+    <>
+    <Grid container alignItems="center">
+      <Typography variant="h5">Page Views</Typography>
+    </Grid>
     <Box id="chart" sx={{ bgcolor: 'transparent' }}>
-      <ReactApexChart options={options} series={series} type="area" height={450} />
-    </Box>
+      <ReactApexChart options={options} series={series} type="area" height={250} />
+    </Box></>
   );
 };
 

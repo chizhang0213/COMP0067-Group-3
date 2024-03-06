@@ -7,34 +7,102 @@ datasource db {
   url      = "mongodb://localhost:27017/marking"
 }
 
+type GradesScore {
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  TAMark       Json
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  individual   Json?
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  lecMark      Json
+  projectTitle String
+  teamNo       Int
+}
+
+type ProjectsProjects {
+  TAId         String
+  leader       Int
+  projectTitle String
+  teamMember   Int[]
+  teamNo       Int
+}
+
+type SchemeComponents {
+  fraction      Int
+  isDistributed Boolean
+  name          String
+  questions     SchemeComponentsQuestions[]
+}
+
+type SchemeComponentsQuestions {
+  description  String?
+  /// Multiple data types found: Float: 33.3%, Int: 66.7% out of 12 sampled entries
+  fraction     Json?
+  isOptional   Boolean?
+  isTAEvaluate Boolean?
+  options      String[]
+  placeholder  String?
+  text         String
+  type         String
+}
+
 model TAs {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdDate DateTime @db.Date
-  firstName   String
-  isActive    Boolean
-  lastName    String
-  lecturerId  String
-  uclId       Int
-  username    String
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  firstName String
+  isActive  Boolean
+  lastName  String
+}
+
+model admin {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  firstName String
+  lastName  String
+  password  String
+  username  String
+}
+
+model grades {
+  id       String        @id @default(auto()) @map("_id") @db.ObjectId
+  moduleId String
+  score    GradesScore[]
 }
 
 model lecturers {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdDate DateTime @db.Date
-  firstName   String
-  isActive    Boolean
-  lastName    String
-  uclId       Int
-  username    String
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  firstName String
+  isActive  Boolean
+  lastName  String
 }
 
 model modules {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  maxSize  Int
-  moduleNo String
-  title    String
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  Lecturers    String[]
+  TAs          String[]
+  academicYear Int
+  createdLec   String
+  moduleNo     String
+  title        String
+}
+
+model projects {
+  id       String             @id @default(auto()) @map("_id") @db.ObjectId
+  moduleId String
+  projects ProjectsProjects[]
+}
+
+model scheme {
+  id         String             @id @default(auto()) @map("_id") @db.ObjectId
+  components SchemeComponents[]
+  moduleId   String
 }
 
 model students {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  firstName String
+  lastName  String
+  photo     String
+  uclId     Int
 }

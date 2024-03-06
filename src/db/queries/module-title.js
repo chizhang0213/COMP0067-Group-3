@@ -1,7 +1,9 @@
-import db from '../index.js';
+'use server';
 
-export async function fetchTitleByModuleNo({ moduleNo }) {
-  const course = await db.modules.findUnique({
+import db from 'db/index';
+
+export async function fetchTitleByModuleNo(moduleNo) {
+  const course = await db.modules.findFirst({
     where: {
       moduleNo: moduleNo
     },
@@ -9,8 +11,5 @@ export async function fetchTitleByModuleNo({ moduleNo }) {
       title: true
     }
   });
-
-  console.log(course);
-
   return course?.title;
 }

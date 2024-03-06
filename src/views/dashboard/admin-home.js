@@ -88,7 +88,7 @@ const AdminHome = () => {
   function Buttons() {
     return (
         <>
-        <Grid container item alignItems="center" justifyContent="space-between">
+        <Grid container item alignItems="center" justifyContent="center" spacing={20}>
             <Grid item>
                 <Button variant="contained">Back Up</Button>
             </Grid>
@@ -131,13 +131,20 @@ const AdminHome = () => {
         <Typography variant="h5">Dashboard</Typography>
       </Grid>
 
-      <Grid container alignItems="center" item xs={6} spacing={3}>
-      <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'block' } }} />
+      <Grid container alignItems="flex-end" item xs={7} spacing={3}>
+      {/* <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'block' } }} /> */}
           <Buttons/>
           <ModuleInfo/>
         </Grid>
-        <Grid container item xs={6} spacing={3}>
-            <PageViews/>
+        <Grid container item xs={5}>
+            {/* <PageViews/> */}
+            <Grid item lg={12}>
+                <MainCard content={false} sx={{ mt: 1.5, ml: 1 }}>
+                    <Box sx={{ pt: 1, pr: 2 }}>
+                        <IncomeAreaChart slot={slot} />
+                    </Box>
+                </MainCard>
+            </Grid>
         </Grid>
 
         <Grid item xs={12}>

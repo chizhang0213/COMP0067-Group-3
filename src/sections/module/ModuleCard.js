@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MainCard from 'components/MainCard';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -9,15 +9,33 @@ import { UserOutlined, TeamOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import useTheme from '@mui/system/useTheme';
 import { useRouter } from 'next/navigation';
+import { fetchProjectsByModuleId } from 'db/queries/moduleId-projects';
 
 export default function ModuleCard({ data }) {
-  const lecturerCount = 0;
-  const TACount = 0;
+  const lecturerCount = data.Lecturers.length;
+  const TACount = data.TAs.length;
   const theme = useTheme();
   const router = useRouter();
-  const handleClickView = (moduleNo) => {
-    router.push(`/home/${moduleNo}`);
+  const handleClickView = (moduleNo, academicYear) => {
+    router.push(`/home/${moduleNo}/${academicYear}/projects`);
   };
+
+  const [Projects, setProjects] = useState({ projects: [] });
+
+  useEffect(() => {
+    const fetchProjectsProjects = async () => {
+      try {
+        const fetchedProjects = await fetchProjectsByModuleId(data.id);
+        setProjects(fetchedProjects || { projects: [] });
+      } catch (error) {
+        console.error('Error while fetching projects:', error);
+      }
+    };
+
+    fetchProjectsProjects();
+  }, [data.id]);
+
+  const projectsCount = Projects.projects.length;
 
   return (
     <MainCard
@@ -46,10 +64,10 @@ export default function ModuleCard({ data }) {
         </Stack>
         <Stack direction="row" spacing={1} alignItems="center">
           <TeamOutlined />
-          <Typography variant="body2">{'0 group'}</Typography>
+          <Typography variant="body2">{`${projectsCount} group${projectsCount !== 1 ? 's' : ''}`}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="flex-end">
-          <Button size="small" variant="contained" onClick={() => handleClickView(data.moduleNo)}>
+          <Button size="small" variant="contained" onClick={() => handleClickView(data.moduleNo, data.academicYear)}>
             View
           </Button>
         </Stack>
@@ -60,9 +78,14 @@ export default function ModuleCard({ data }) {
 
 ModuleCard.propTypes = {
   data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     moduleNo: PropTypes.string.isRequired,
+    academicYear: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    lecturerId: PropTypes.arrayOf(PropTypes.string).isRequired,
-    TAId: PropTypes.arrayOf(PropTypes.string).isRequired
+    Lecturers: PropTypes.arrayOf(PropTypes.string).isRequired,
+    TAs: PropTypes.arrayOf(PropTypes.string).isRequired
+  }).isRequired,
+  Projects: PropTypes.shape({
+    projects: PropTypes.array.isRequired
   }).isRequired
 };

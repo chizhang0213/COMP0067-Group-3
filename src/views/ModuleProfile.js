@@ -38,12 +38,12 @@ import {
 
 // ==============================|| Module - ModuleNo ||============================== //;
 
-const ModuleProfile = ({ tab, moduleNo, title }) => {
+const ModuleProfile = ({ tab, moduleNo, moduleTitle, academicYear }) => {
   const router = useRouter();
   const { menuMaster } = useGetMenuMaster();
 
   let breadcrumbTitle = '';
-  let breadcrumbHeading = '';
+  let breadcrumbHeading = `${moduleTitle}`;
 
   switch (tab) {
     case 'projects':
@@ -52,7 +52,7 @@ const ModuleProfile = ({ tab, moduleNo, title }) => {
       break;
     case 'information':
       breadcrumbTitle = 'Information';
-      breadcrumbHeading = 'Module Information';
+      breadcrumbHeading = 'Information';
       break;
     case 'design':
       breadcrumbTitle = 'Design';
@@ -60,7 +60,7 @@ const ModuleProfile = ({ tab, moduleNo, title }) => {
       break;
     case 'grades-summary':
       breadcrumbTitle = 'Grades Summary';
-      breadcrumbHeading = 'Grades Summary';
+      breadcrumbHeading = 'Grade Summary';
       break;
     case 'grades-insight':
       breadcrumbTitle = 'Grade Insight';
@@ -68,11 +68,11 @@ const ModuleProfile = ({ tab, moduleNo, title }) => {
       break;
     case 'students':
       breadcrumbTitle = 'Students';
-      breadcrumbHeading = 'Students profile';
+      breadcrumbHeading = 'Students';
       break;
     case 'tas':
       breadcrumbTitle = 'TAs';
-      breadcrumbHeading = 'TAs profile';
+      breadcrumbHeading = 'TAs';
       break;
     case 'upload-files':
       breadcrumbTitle = 'Upload Files';
@@ -81,17 +81,21 @@ const ModuleProfile = ({ tab, moduleNo, title }) => {
     case 'basic':
     default:
       breadcrumbTitle = moduleNo;
-      breadcrumbHeading = title;
+      breadcrumbHeading = moduleTitle;
   }
 
   const [value, setValue] = useState(tab);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    router.replace(`/home/${moduleNo}/${newValue}`);
+    router.replace(`/home/${moduleNo}/${academicYear}/${newValue}`);
   };
 
-  let breadcrumbLinks = [{ title: 'Home', to: APP_DEFAULT_PATH }, { title: breadcrumbTitle }];
+  let breadcrumbLinks = [
+    { title: 'Home', to: APP_DEFAULT_PATH },
+    { title: `${moduleNo}`, to: `/home/${moduleNo}/${academicYear}/projects` },
+    { title: breadcrumbTitle }
+  ];
   if (tab === 'basic') {
     breadcrumbLinks = [{ title: 'Home', to: APP_DEFAULT_PATH }, { title: 'Module No' }];
   }
@@ -118,14 +122,14 @@ const ModuleProfile = ({ tab, moduleNo, title }) => {
           </Tabs>
         </Box>
         <Box sx={{ mt: 2.5 }}>
-          {tab === 'Projects' && <TabProjects />}
-          {tab === 'Information' && <TabInformation />}
-          {tab === 'Design' && <TabDesign />}
-          {tab === 'Grades Summary' && <TabGradesSummary />}
-          {tab === 'Grades Insight' && <TabGradesInsight />}
-          {tab === 'Students' && <TabStudents />}
-          {tab === 'TAs' && <TabTAs />}
-          {tab === 'Upload Files' && <TabUpload />}
+          {tab === 'projects' && <TabProjects />}
+          {tab === 'information' && <TabInformation />}
+          {tab === 'design' && <TabDesign />}
+          {tab === 'grades-summary' && <TabGradesSummary />}
+          {tab === 'grades-insight' && <TabGradesInsight />}
+          {tab === 'students' && <TabStudents />}
+          {tab === 'tas' && <TabTAs />}
+          {tab === 'upload-files' && <TabUpload />}
         </Box>
       </MainCard>
     </>
@@ -134,7 +138,7 @@ const ModuleProfile = ({ tab, moduleNo, title }) => {
 
 ModuleProfile.propTypes = {
   tab: PropTypes.string,
-  title: PropTypes.string,
+  moduleTitle: PropTypes.string,
   moduleNo: PropTypes.string
 };
 
