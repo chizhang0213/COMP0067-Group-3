@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "65e0df9bdc6ad2d10f3ff4e4"
+  },
+  "moduleNo": "COMP0067",
+  "title": "App Engineering",
+  "Lecturers": [
+    "65dd0219bb09a1a833ba1c3a",
+    "65ddbe260717e97c95f39e81"
+  ],
+  "TAs": [
+    "65dd0306bb09a1a833ba1c3b",
+    "65e0e042dc6ad2d10f3ff4e7"
+  ],
+  "academicYear": 2023,
+  "createdLec": "65dd0219bb09a1a833ba1c3a"
+},
+{
+  "_id": {
+    "$oid": "65e6f634286d0e1e136566f7"
+  },
+  "moduleNo": "COMP0001",
+  "title": "Test Module",
+  "Lecturers": [
+    "65dd0219bb09a1a833ba1c3a"
+  ],
+  "TAs": [
+    "65dd0306bb09a1a833ba1c3b"
+  ],
+  "academicYear": 2023,
+  "createdLec": "65dd0219bb09a1a833ba1c3a"
+}]

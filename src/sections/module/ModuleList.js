@@ -22,13 +22,13 @@ export default function ModuleList({ modules }) {
   const handleAddModule = async () => {
     const moduleNoInput = document.getElementById('moduleNo');
     const titleInput = document.getElementById('title');
-    const maxSizeInput = document.getElementById('maxSize');
+    const academicYearInput = document.getElementById('academicYear');
 
     const formData = new FormData();
 
     formData.append('moduleNo', moduleNoInput.value);
     formData.append('title', titleInput.value);
-    formData.append('maxSize', maxSizeInput.value);
+    formData.append('academicYear', academicYearInput.value);
 
     try {
       await createModule(null, formData);
@@ -86,14 +86,14 @@ export default function ModuleList({ modules }) {
 
             <Grid item xs={12}>
               <Stack spacing={1}>
-                <label htmlFor="maxSize" style={{ color: '#333' }}>
-                  Max Team Size
+                <label htmlFor="academicYear" style={{ color: '#333' }}>
+                  Academic Year
                 </label>
                 <input
                   type="text"
-                  id="maxSize"
-                  name="maxSize"
-                  style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
+                  id="academicYear"
+                  name="academicYear"
+                  style={{ width: '50%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}
                 />
               </Stack>
             </Grid>

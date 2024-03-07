@@ -3,28 +3,29 @@
 import React, { useState, useEffect } from 'react';
 import ModuleProfile from '../../../../../../views/ModuleProfile';
 import { useParams } from 'next/navigation';
-import { fetchTitleByModuleNo } from 'db/queries/module-title';
+import { fetchModuleByModuleNo } from 'db/queries/moduleNo-module';
 
 export default function ModulePage() {
   const { tab, moduleNo, academicYear } = useParams();
-  const [moduleTitle, setTitle] = useState('');
+  const academicYearInt = parseInt(academicYear);
+  const [module, setModule] = useState('');
 
   useEffect(() => {
     const fetchModuleTitle = async () => {
       try {
-        const fetchedTitle = await fetchTitleByModuleNo(moduleNo);
-        setTitle(fetchedTitle);
+        const fetchedModule = await fetchModuleByModuleNo(moduleNo, academicYearInt);
+        setModule(fetchedModule);
       } catch (error) {
         console.error('Error while fetching module title:', error);
       }
     };
 
     fetchModuleTitle();
-  }, [moduleNo]);
+  }, [academicYearInt, moduleNo]);
 
   return (
     <>
-      <ModuleProfile tab={tab} moduleNo={moduleNo} moduleTitle={moduleTitle} academicYear={academicYear} />
+      <ModuleProfile tab={tab} moduleNo={moduleNo} moduleTitle={module.title} academicYear={academicYearInt} />
     </>
   );
 }

@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 
 // material-ui
 import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Button,
   Chip,
   Collapse,
@@ -27,12 +30,12 @@ import { fetchStudentsByUCLId } from 'db/queries/teamMember-students';
 import { fetchLeaderByUCLId } from 'db/queries/uclId-leader';
 
 // assets
-import { UserOutlined, EnvironmentOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
+import { UserOutlined, ReadOutlined, EnvironmentOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
+import ScrollX from 'components/ScrollX';
 
 // ==============================|| ACCOUNT PROFILE - BASIC ||============================== //
 
 const TabProfile = () => {
-  const [showMainCard, setShowMainCard] = useState(true);
   const [project, setProject] = useState({});
   const [team, setTeam] = useState([]);
   const [leader, setLeader] = useState({});
@@ -57,76 +60,69 @@ const TabProfile = () => {
     fetchModuleTitle();
   }, [moduleNo, academicYearInt, teamNoInt]);
 
-  const handleDisplayButtonClick = () => {
-    setShowMainCard((prevShowMainCard) => !prevShowMainCard);
-  };
-
   return (
     <Grid container spacing={1}>
-      <Stack direction="row" justifyContent="flex-end" sx={{ width: '100%', padding: 1.5 }}>
-        <Button variant="contained" onClick={handleDisplayButtonClick}>
-          {showMainCard ? 'Hide' : 'Show'} Members
-        </Button>
-      </Stack>
-      <Grid item xs={12}>
-        <Collapse in={showMainCard} timeout="auto" unmountOnExit>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <MainCard
-                style={{
-                  margin: 'auto',
-                  border: 'none',
-                  backgroundColor: '#f5f5f5',
-                  boxShadow: 'none'
-                }}
-              >
-                  <Grid item xs={3}>
-                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginTop: 'auto', marginBottom: '10px' }}>
-                      <UserOutlined style={{ marginRight: '8px' }} />
-                    <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-                      Profile
-                    </Typography>
-                  </div>
-                  </Grid>
-                  <Grid container spacing={3} justifyContent="center">
-                    {team.map((member, index) => (
-                      <Grid item xs={3} key={index}>
-                        <MainCard
-                          style={{
-                            margin: 'auto',
-                            border: 'none',
-                            boxShadow: 'none',
-                            borderRadius: '10px'
-                          }}
-                        >
-                          <Grid container>
-                            <Grid item xs={12}>
-                              <Stack direction="row" alignItems="center" spacing={2}>
-                                <Avatar alt="Avatar" size="xl" src="/assets/images/users/default.png" />
-                                <Stack spacing={0.5}>
-                                  <Typography>
-                                    <strong>Name:</strong> {`${member.firstName} ${member.lastName}`}
-                                  </Typography>
-                                  <Typography noWrap>
-                                    <strong>Email:</strong> {member.email}
-                                  </Typography>
-                                  <Typography>
-                                    <strong>Student ID:</strong> {member.uclId}
-                                  </Typography>
-                                </Stack>
+      <ScrollX item xs={12} style={{ borderRadius: '12px', overflow: 'hidden' }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Accordion
+              style={{
+                margin: 'auto',
+                border: 'none',
+                backgroundColor: '#f5f5f5',
+                boxShadow: 'none'
+              }}
+            >
+              <AccordionSummary aria-controls="panel1a-content" id="panel1a-header" style={{ alignItems: 'center' }}>
+                <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+                  <UserOutlined style={{ marginRight: '8px' }} />
+                  Profile
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Grid container spacing={3} justifyContent="center">
+                  {team.map((member, index) => (
+                    <Grid item xs={3} key={index}>
+                      <MainCard
+                        style={{
+                          margin: 'auto',
+                          border: 'none',
+                          boxShadow: 'none',
+                          borderRadius: '10px'
+                        }}
+                      >
+                        <Typography variant="subtitle1" style={{ marginBottom: '16px' }}>
+                          {leader.uclId === member.uclId ? 'Leader / ' : ''}Student {index + 1}
+                        </Typography>
+                        <Grid container>
+                          <Grid item xs={12}>
+                            <Stack direction="row" alignItems="center" spacing={2}>
+                              <Avatar alt="Avatar" size="xl" src="/assets/images/users/default.png" />
+                              <Stack spacing={0.5}>
+                                <Typography>
+                                  <strong>Name:</strong> {`${member.firstName} ${member.lastName}`}
+                                </Typography>
+                                <Typography noWrap>
+                                  <strong>Email:</strong> {member.email}
+                                </Typography>
+                                <Typography>
+                                  <strong>Student ID:</strong> {member.uclId}
+                                </Typography>
                               </Stack>
-                            </Grid>
+                            </Stack>
                           </Grid>
-                        </MainCard>
-                      </Grid>
-                    ))}
-                  </Grid>
-              </MainCard>
-            </Grid>
+                        </Grid>
+                      </MainCard>
+                    </Grid>
+                  ))}
+                </Grid>
+              </AccordionDetails>
+            </Accordion>
           </Grid>
-        </Collapse>
-      </Grid>
-      <Grid item xs={12}>
+        </Grid>
+      </ScrollX>
+      <Grid item xs={12} style={{ height: '10px' }}></Grid>
+      <ScrollX item xs={12} style={{ borderRadius: '12px', overflow: 'hidden' }}>
         <MainCard
           style={{
             margin: 'auto',
@@ -135,11 +131,25 @@ const TabProfile = () => {
             boxShadow: 'none'
           }}
         >
-          <Typography variant="h5" style={{ padding: '20px' }}>Assessment</Typography>
+          <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
+            <Grid item>
+              <Typography variant="h6" style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>
+                <ReadOutlined style={{ marginRight: '8px' }} />
+                Assessment
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" color="primary" style={{ marginRight: '15px' }}>
+                Save
+              </Button>
+              <Button variant="contained" color="primary">
+                Edit
+              </Button>
+            </Grid>
+          </Grid>
         </MainCard>
-      </Grid>
+      </ScrollX>
     </Grid>
   );
 };
-
 export default TabProfile;
