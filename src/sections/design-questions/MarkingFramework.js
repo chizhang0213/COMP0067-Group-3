@@ -11,7 +11,9 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { FormControl, InputLabel, Input, Button} from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 
-export default function MarkingQuestion(){
+import MarkingQuestion from './MarkingCard';
+
+export default function MarkingFramework(){
     const [selectedValue, setSelectedValue] = useState('');
 
     const handleChange = (event) => { setSelectedValue(event.target.value);};
@@ -87,6 +89,8 @@ export default function MarkingQuestion(){
                 </Grid>
                 <Grid item xs={10.5}>
                 </Grid>
+
+                <MarkingQuestion/>
 
                 {/* row 4 */}
                 <Grid item xs={9}>

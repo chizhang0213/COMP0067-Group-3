@@ -1,5 +1,5 @@
-import MarkingCardContoller from 'sections/design-questions/MarkingCardContoller';
+import MarkingFramework from 'sections/design-questions/MarkingFramework';
 
 export default function DesignQ(){
-    return <MarkingCardContoller/>;
+    return <MarkingFramework/>;
 }
