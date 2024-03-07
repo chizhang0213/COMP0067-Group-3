@@ -2,12 +2,7 @@ import { Stack, InputLabel, Select, MenuItem } from '@mui/material';
 import { Grid, TextField } from '../../../node_modules/@mui/material/index';
 import { useState } from 'react';
 
-export default function PercentageElement(){
-    const [selectedInputType, setSelectedInputType] = useState('string'); // Set the default value here
-
-    const handleInputTypeChange = (event) => {
-        setSelectedInputType(event.target.value);
-    };
+export default function PercentageElement(props){
 
     return(
         <>
@@ -20,6 +15,9 @@ export default function PercentageElement(){
                     InputProps={{
                         endAdornment: '%'
                     }}
+                    name='percentage'
+                    value={props.input}
+                    onChange={props.inputChange}
                 />
             </Stack>
         </Grid> 

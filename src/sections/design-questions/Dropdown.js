@@ -1,4 +1,4 @@
-import { Stack, InputLabel, Select, MenuItem } from '@mui/material';
+import { Stack, InputLabel, Select, MenuItem, Button } from '@mui/material';
 import { Grid, TextField, Typography } from '../../../node_modules/@mui/material/index';
 import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
@@ -71,9 +71,8 @@ export default function Dropdown(){
                 </Grid>
             ))
         )}
-
         <Grid item xs={1.5}>
-            <Stack direction="row" alignItems="center" spacing={1}>
+            {/* <Stack direction="row" alignItems="center" spacing={1}>
                 <InputLabel htmlFor="add-option">{formFields.length+1}.</InputLabel>
                 <TextField
                     fullWidth
@@ -86,7 +85,8 @@ export default function Dropdown(){
                         style: { paddingLeft: '3px'} // Adjust the paddingLeft as needed
                         }}
                 />
-            </Stack>
+            </Stack> */}
+            <Button fullWidth variant="outlined" color="primary" onClick={addFields}>+ Add</Button>
         </Grid>
         </>
     );

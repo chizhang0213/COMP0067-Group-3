@@ -2,12 +2,12 @@ import { Stack, InputLabel, Select, MenuItem } from '@mui/material';
 import { Grid, TextField } from '../../../node_modules/@mui/material/index';
 import { useState } from 'react';
 
-export default function ShortAnswer(){
-    const [selectedInputType, setSelectedInputType] = useState('string'); // Set the default value here
+export default function ShortAnswer(props){
+    // const [selectedInputType, setSelectedInputType] = useState('string'); // Set the default value here
 
-    const handleInputTypeChange = (event) => {
-        setSelectedInputType(event.target.value);
-    };
+    // const handleInputTypeChange = (event) => {
+    //     setSelectedInputType(event.target.value);
+    // };
 
     return(
         <>
@@ -27,7 +27,13 @@ export default function ShortAnswer(){
         <Grid item xs={6}>
             <Stack spacing={1}>
                 <InputLabel htmlFor="input-type">Question Response Format</InputLabel>
-                <Select fullWidth id="input-type" value={selectedInputType} onChange={handleInputTypeChange}>
+                <Select 
+                    fullWidth 
+                    id="input-type"
+                    name='short-ans'
+                    value={props.input} 
+                    onChange={props.inputChange}
+                    >
                     {/* <MenuItem value="" disabled>
                         Select Response Format
                     </MenuItem> */}

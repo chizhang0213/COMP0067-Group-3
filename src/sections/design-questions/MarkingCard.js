@@ -1,6 +1,6 @@
 'use client';
 
-import { Select, Grid, MenuItem, FormControlLabel, Stack, TextField, Switch } from '@mui/material';
+import { Select, Grid, MenuItem, FormControlLabel, Stack, TextField, Switch, Button } from '@mui/material';
 import MainCard from 'components/MainCard';
 import { Divider } from '../../../node_modules/@mui/material/index';
 import { useState } from 'react';
@@ -29,7 +29,11 @@ export default function MarkingQuestion(){
             qType: 'short-answer', 
             marker: 'lec-and-ta', 
             isOptional: true,
-            detail: ''
+            detail: {
+                'short-ans': '', 
+                'dropdown': [''],
+                'percentage': ''
+            }
         },
     ])
 
@@ -46,6 +50,26 @@ export default function MarkingQuestion(){
 
         setMarkingElements(data);
     }
+    const handleDetailsChange = (event, index) => {
+        let data = [...markingElements];
+
+        data[index]['detail'][event.target.name] = event.target.value;
+
+        setMarkingElements(data);
+    }
+
+    const addElement = () => {
+        let object = {
+            title: '', 
+            description: '',
+            qType: 'short-answer', 
+            marker: 'lec-and-ta', 
+            isOptional: true,
+            detail: ['']
+        }
+    
+        setMarkingElements([...markingElements, object])
+      }
 
     const copyElement = (index) => {
         let data = _.cloneDeep(markingElements);
@@ -61,7 +85,12 @@ export default function MarkingQuestion(){
 
     return(
         <>
+        <Grid container>
         {markingElements.map((element, index) => {
+            // if (element.qType === 'short-answer' && element.detail === ''){
+            //     element.detail = 'string';
+            // }
+
             return (
                 <MainCard key={index}>
                     <Grid container spacing={3}>
@@ -115,10 +144,10 @@ export default function MarkingQuestion(){
                         <Grid item xs={12}>
                             <Grid container paddingLeft={'10px'} spacing={3}>
                                 {/* Conditional rendering based on selected question type */}
-                                {element.qType === 'short-answer' && <ShortAnswer/>}
+                                {element.qType === 'short-answer' && <ShortAnswer inputChange={event => handleDetailsChange(event, index)} input={element.detail['short-ans']}/>}
                                 {element.qType === 'paragraph' && <Paragraph/>}
-                                {element.qType === 'dropdown' && <Dropdown/>}
-                                {element.qType === 'percentage' && <PercentageElement/>}
+                                {element.qType === 'dropdown' && <Dropdown inputChange={event => handleElementsChange(event, index)} input={element.detail}/>}
+                                {element.qType === 'percentage' && <PercentageElement inputChange={event => handleDetailsChange(event, index)} input={element.detail.percentage}/>}
                             </Grid>  
                         </Grid>
 
@@ -170,6 +199,11 @@ export default function MarkingQuestion(){
             )
           })}
         <button onClick={submit}>submit</button>
+        
+            <Grid item xs={4}>
+                <Button fullWidth variant="outlined" color="primary" onClick={addElement}>+ Add Marking Component</Button>
+            </Grid>
+        </Grid>
 
         </>
         

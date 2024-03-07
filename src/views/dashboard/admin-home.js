@@ -140,9 +140,9 @@ const AdminHome = () => {
             {/* <PageViews/> */}
             <Grid item lg={12}>
                 <MainCard content={false} sx={{ mt: 1.5, ml: 1 }}>
-                    <Box sx={{ pt: 1, pr: 2 }}>
-                        <IncomeAreaChart slot={slot} />
-                    </Box>
+                <Box sx={{ pt: 1, pr: 2 }}>
+                    <IncomeAreaChart slot={slot} />
+                </Box>
                 </MainCard>
             </Grid>
         </Grid>
