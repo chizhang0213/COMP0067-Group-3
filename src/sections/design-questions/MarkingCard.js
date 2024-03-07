@@ -8,10 +8,13 @@ import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { FormControl, InputLabel, Input } from '@mui/material';
+import { FormControl, InputLabel, Input} from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 
 export default function MarkingQuestion(){
+    const [selectedValue, setSelectedValue] = useState('');
+
+    const handleChange = (event) => { setSelectedValue(event.target.value);};
 
     return(
         <MainCard>
@@ -57,17 +60,21 @@ export default function MarkingQuestion(){
                         <label htmlFor="title" style={{ color: '#333' }}>
                         Type
                         </label>
-                        <TextField
-                        type="text"
-                        id="title"
-                        name="title"
-                        />
+                        <FormControl fullWidth>
+                            <Select
+                                labelId="dropdown-label"
+                                id="dropdown"
+                                value={selectedValue}
+                                onChange={handleChange}
+                            >
+                                <MenuItem value="option1">Group</MenuItem>
+                                <MenuItem value="option2">Individual</MenuItem>
+                            </Select>
+                        </FormControl>
                     </Stack>
                 </Grid>
                 <Grid item xs={10.5}>
                 </Grid>
-                
-
             </Grid> 
         </MainCard>
     );
