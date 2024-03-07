@@ -1,0 +1,27 @@
+[{
+  "_id": {
+    "$oid": "65dd0219bb09a1a833ba1c3a"
+  },
+  "firstName": "Ming",
+  "lastName": "He",
+  "isActive": true,
+  "email": "ming.he@ucl.ac.uk"
+},
+{
+  "_id": {
+    "$oid": "65ddbe260717e97c95f39e81"
+  },
+  "firstName": "John",
+  "lastName": "Wick",
+  "isActive": true,
+  "email": "john.wich@ucl.ac.uk"
+},
+{
+  "_id": {
+    "$oid": "65ddbe7b0717e97c95f39e86"
+  },
+  "firstName": "Thomas",
+  "lastName": "Selig",
+  "isActive": true,
+  "email": "thomas.selig@ucl.ac.uk"
+}]

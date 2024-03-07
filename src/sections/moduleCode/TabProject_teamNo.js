@@ -4,7 +4,9 @@ import React, { useState, useEffect } from 'react';
 
 // material-ui
 import {
-  Accordion,AccordionSummary, AccordionDetails,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Button,
   Chip,
   Collapse,
@@ -34,7 +36,6 @@ import ScrollX from 'components/ScrollX';
 // ==============================|| ACCOUNT PROFILE - BASIC ||============================== //
 
 const TabProfile = () => {
-  const [showMainCard, setShowMainCard] = useState(true);
   const [project, setProject] = useState({});
   const [team, setTeam] = useState([]);
   const [leader, setLeader] = useState({});
@@ -59,37 +60,26 @@ const TabProfile = () => {
     fetchModuleTitle();
   }, [moduleNo, academicYearInt, teamNoInt]);
 
-  const handleDisplayButtonClick = () => {
-    setShowMainCard((prevShowMainCard) => !prevShowMainCard);
-  };
-
   return (
     <Grid container spacing={1}>
-      <Stack direction="row" justifyContent="flex-end" sx={{ width: '100%', padding: 1.5 }}>
-        <Button variant="contained" onClick={handleDisplayButtonClick}>
-          {showMainCard ? 'Hide' : 'Show'} Members
-        </Button>
-      </Stack>
-      <ScrollX item xs={12}>
-        <Collapse in={showMainCard} timeout="auto" unmountOnExit>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <MainCard
-                style={{
-                  margin: 'auto',
-                  border: 'none',
-                  backgroundColor: '#f5f5f5',
-                  boxShadow: 'none'
-                }}
-              >
-                <Grid item xs={3}>
-                  <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginTop: 'auto', marginBottom: '10px' }}>
-                    <UserOutlined style={{ marginRight: '8px' }} />
-                    <Typography variant="h6" style={{ fontWeight: 'bold' }}>
-                      Profile
-                    </Typography>
-                  </div>
-                </Grid>
+      <ScrollX item xs={12} style={{ borderRadius: '12px', overflow: 'hidden' }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Accordion
+              style={{
+                margin: 'auto',
+                border: 'none',
+                backgroundColor: '#f5f5f5',
+                boxShadow: 'none'
+              }}
+            >
+              <AccordionSummary aria-controls="panel1a-content" id="panel1a-header" style={{ alignItems: 'center' }}>
+                <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+                  <UserOutlined style={{ marginRight: '8px' }} />
+                  Profile
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
                 <Grid container spacing={3} justifyContent="center">
                   {team.map((member, index) => (
                     <Grid item xs={3} key={index}>
@@ -101,6 +91,9 @@ const TabProfile = () => {
                           borderRadius: '10px'
                         }}
                       >
+                        <Typography variant="subtitle1" style={{ marginBottom: '16px' }}>
+                          {leader.uclId === member.uclId ? 'Leader / ' : ''}Student {index + 1}
+                        </Typography>
                         <Grid container>
                           <Grid item xs={12}>
                             <Stack direction="row" alignItems="center" spacing={2}>
@@ -123,40 +116,40 @@ const TabProfile = () => {
                     </Grid>
                   ))}
                 </Grid>
-              </MainCard>
-            </Grid>
+              </AccordionDetails>
+            </Accordion>
           </Grid>
-        </Collapse>
+        </Grid>
       </ScrollX>
-      <Grid item xs={12}>
-      <Accordion
-            style={{
-              margin: 'auto',
-              border: 'none',
-              backgroundColor: '#f5f5f5',
-              boxShadow: 'none'
-            }}
-          >
-            <AccordionSummary
-              expandIcon={<ReadOutlined />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-              style={{alignItems: 'center'}} // 确保内容在同一行垂直居中
-            >
-              <ReadOutlined style={{ marginRight: '8px' }} />
-              <Typography variant="h6" style={{ fontWeight: 'bold' }}>
+      <Grid item xs={12} style={{ height: '10px' }}></Grid>
+      <ScrollX item xs={12} style={{ borderRadius: '12px', overflow: 'hidden' }}>
+        <MainCard
+          style={{
+            margin: 'auto',
+            border: 'none',
+            backgroundColor: '#f5f5f5',
+            boxShadow: 'none'
+          }}
+        >
+          <Grid container alignItems="center" justifyContent="space-between" spacing={2}>
+            <Grid item>
+              <Typography variant="h6" style={{ fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>
+                <ReadOutlined style={{ marginRight: '8px' }} />
                 Assessment
               </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                在这里可以放置考核内容或其他相关信息。
-              </Typography>
-            </AccordionDetails>
-          </Accordion>
-      </Grid>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" color="primary" style={{ marginRight: '15px' }}>
+                Save
+              </Button>
+              <Button variant="contained" color="primary">
+                Edit
+              </Button>
+            </Grid>
+          </Grid>
+        </MainCard>
+      </ScrollX>
     </Grid>
   );
 };
-
 export default TabProfile;
