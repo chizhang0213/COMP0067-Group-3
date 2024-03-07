@@ -57,6 +57,15 @@ export default function MarkingQuestion(){
 
         setMarkingElements(data);
     }
+    const handleDropdownChange = (drop, index) => {
+        let data = [...markingElements];
+
+        // console.log(index)
+
+        data[index]['detail']['dropdown'] = drop;
+
+        setMarkingElements(data);
+    }
 
     const addElement = () => {
         let object = {
@@ -65,7 +74,11 @@ export default function MarkingQuestion(){
             qType: 'short-answer', 
             marker: 'lec-and-ta', 
             isOptional: true,
-            detail: ['']
+            detail: {
+                'short-ans': '', 
+                'dropdown': [''],
+                'percentage': ''
+            }
         }
     
         setMarkingElements([...markingElements, object])
@@ -74,6 +87,7 @@ export default function MarkingQuestion(){
     const copyElement = (index) => {
         let data = _.cloneDeep(markingElements);
         data.splice(index + 1, 0, _.cloneDeep(data[index]));
+        // console.log(data)
         setMarkingElements(data);
     };
 
@@ -146,7 +160,7 @@ export default function MarkingQuestion(){
                                 {/* Conditional rendering based on selected question type */}
                                 {element.qType === 'short-answer' && <ShortAnswer inputChange={event => handleDetailsChange(event, index)} input={element.detail['short-ans']}/>}
                                 {element.qType === 'paragraph' && <Paragraph/>}
-                                {element.qType === 'dropdown' && <Dropdown inputChange={event => handleElementsChange(event, index)} input={element.detail}/>}
+                                {element.qType === 'dropdown' && <Dropdown dropChange={event => handleDropdownChange(event, index)} input={element.detail.dropdown}/>}
                                 {element.qType === 'percentage' && <PercentageElement inputChange={event => handleDetailsChange(event, index)} input={element.detail.percentage}/>}
                             </Grid>  
                         </Grid>

@@ -4,16 +4,21 @@ import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 
-export default function Dropdown(){
+export default function Dropdown(props){
+
     const index0 = 0;
 
-    const [formFields, setFormFields] = useState(['']);
-    
-      const handleFormChange = (event, index) => {
-        let data = [...formFields];
-        data[index] = event.target.value;
-        setFormFields(data);
-      }
+    const initialFormFields = props.input || [''];
+    const [formFields, setFormFields] = useState(initialFormFields);
+
+    const handleFormChange = (event, index) => {
+    let data = [...formFields];
+    data[index] = event.target.value;
+    setFormFields(data);
+    // console.log(props.index)
+
+    props.dropChange(data)
+    }
 
       const addFields = () => {
         let newOption = ''
@@ -25,6 +30,8 @@ export default function Dropdown(){
         let data = [...formFields];
         data.splice(index, 1)
         setFormFields(data)
+
+        props.dropChange(data)
       }
 
     return(
