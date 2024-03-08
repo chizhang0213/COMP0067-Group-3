@@ -1,0 +1,110 @@
+[{
+  "_id": {
+    "$oid": "65e0f5dadc6ad2d10f3ff57d"
+  },
+  "moduleId": "65e0df9bdc6ad2d10f3ff4e4",
+  "schema": [
+    {
+      "Code": [
+        {
+          "Challenge level of the project (Assessed by TA)": ""
+        },
+        {
+          "% key functionalities finished (Claimed by students in demo slides)": ""
+        },
+        {
+          "% optional functionalities finished (Claimed by students in demo slides)": ""
+        },
+        {
+          "% key functionalities finished (Assessed by TA)": ""
+        },
+        {
+          "% optional functionalities finished (Assessed by TA)": ""
+        },
+        {
+          "Requirements completion comments (optional, please fill in the detailed reasons if your assessment is different from students' self-evaluation)": "optional"
+        },
+        {
+          "Quality of students' solution (Evaluated by TA)": ""
+        },
+        {
+          "UI (only fill if the project with UI) (Assessed by TA)": ""
+        },
+        {
+          "Critical Bugs": ""
+        },
+        {
+          "Critical Bug Comments (Optional, if you noticed any critical bugs)": "optional"
+        },
+        {
+          "Minor Bugs (please type 'none' or 'few' or 'some' or 'many')": ""
+        },
+        {
+          "Minor Bug Comments (optional, if you noticed any minor bugs)": "optional"
+        },
+        {
+          "Comment": ""
+        },
+        {
+          "Code score": "40%"
+        }
+      ],
+      "Report": [
+        {
+          "Home/Introduction": "0.5%"
+        },
+        {
+          "8 minutes video on the Home page": "2%"
+        },
+        {
+          "Requirement Analysis": "2%"
+        },
+        {
+          "Research Carried and Quality of Decisions": "3%"
+        },
+        {
+          "HCI": "0.5%"
+        },
+        {
+          "Algorithms (if applicable) or/and Design and Implementation": "9%"
+        },
+        {
+          "Testing": "3%"
+        },
+        {
+          "Critical Evaluation": "0.5%"
+        },
+        {
+          "Future work": "0.5%"
+        },
+        {
+          "User and Deployment manual": "2%"
+        },
+        {
+          "Website Organisation and Format": "1%"
+        },
+        {
+          "Website Clarity": "1%"
+        },
+        {
+          "Comment": ""
+        },
+        {
+          "Code score": "30%"
+        }
+      ],
+      "Individual work": [
+        {
+          "Peer review": ""
+        },
+        {
+          "Contribution": ""
+        },
+        {
+          "Individual score": "30%"
+        }
+      ],
+      "Individual comment": "optional"
+    }
+  ]
+}]

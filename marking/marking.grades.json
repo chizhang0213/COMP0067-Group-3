@@ -1,0 +1,210 @@
+[{
+  "_id": {
+    "$oid": "65e0f40cdc6ad2d10f3ff550"
+  },
+  "moduleId": "65e0df9bdc6ad2d10f3ff4e4",
+  "score": [
+    {
+      "teamNo": 1,
+      "projectTitle": "Mobile app and website",
+      "lecMark": {
+        "Code": [
+          {
+            "Challenge level of the project": "hard"
+          },
+          {
+            "% key functionalities finished (demo slides)": 70
+          },
+          {
+            "% optional functionalities finished (demo slides)": 60
+          },
+          {
+            "% key functionalities finished (TA assessment)": 75
+          },
+          {
+            "% optional functionalities finished (TA assessment)": 65
+          },
+          {
+            "Quality of students' solution": "creative"
+          },
+          {
+            "UI": "polished"
+          },
+          {
+            "Critical Bugs": "none"
+          },
+          {
+            "Critical Bugs Comments": ""
+          },
+          {
+            "Minor Bugs": "few"
+          },
+          {
+            "Minor Bugs Comments": ""
+          },
+          {
+            "Comment": "Generally a good start"
+          },
+          {
+            "Code score": 80
+          }
+        ],
+        "Report": [
+          {
+            "Home/Introduction": 100
+          },
+          {
+            "8 minutes video on the Home page": 100
+          },
+          {
+            "Requirement Analysis": 100
+          },
+          {
+            "Research Carried and Quality of Decisions": 100
+          },
+          {
+            "HCI": 100
+          },
+          {
+            "Algorithms or/and Design and Implementation": 100
+          },
+          {
+            "Testing": 100
+          },
+          {
+            "Critical Evaluation": 100
+          },
+          {
+            "Future work": 100
+          },
+          {
+            "User and Deployment manual": 100
+          },
+          {
+            "Website Organisation and Format": 100
+          },
+          {
+            "Website Clarity": 100
+          },
+          {
+            "Comment": "Generally a good start"
+          },
+          {
+            "Report score": 100
+          }
+        ]
+      },
+      "TAMark": {
+        "Code": [
+          {
+            "Challenge level of the project": "hard"
+          },
+          {
+            "% key functionalities finished (demo slides)": 70
+          },
+          {
+            "% optional functionalities finished (demo slides)": 60
+          },
+          {
+            "% key functionalities finished (TA assessment)": 75
+          },
+          {
+            "% optional functionalities finished (TA assessment)": 65
+          },
+          {
+            "Quality of students' solution": "creative"
+          },
+          {
+            "UI": "polished"
+          },
+          {
+            "Critical Bugs": "none"
+          },
+          {
+            "Critical Bugs Comments": ""
+          },
+          {
+            "Minor Bugs": "few"
+          },
+          {
+            "Minor Bugs Comments": ""
+          },
+          {
+            "Comment": "Generally a good start"
+          },
+          {
+            "Code score": 80
+          }
+        ],
+        "Report": [
+          {
+            "Home/Introduction": 100
+          },
+          {
+            "8 minutes video on the Home page": 100
+          },
+          {
+            "Requirement Analysis": 100
+          },
+          {
+            "Research Carried and Quality of Decisions": 100
+          },
+          {
+            "HCI": 100
+          },
+          {
+            "Algorithms or/and Design and Implementation": 100
+          },
+          {
+            "Testing": 100
+          },
+          {
+            "Critical Evaluation": 100
+          },
+          {
+            "Future work": 100
+          },
+          {
+            "User and Deployment manual": 100
+          },
+          {
+            "Website Organisation and Format": 100
+          },
+          {
+            "Website Clarity": 100
+          },
+          {
+            "Comment": "Generally a good start"
+          },
+          {
+            "Report score": 100
+          }
+        ]
+      },
+      "individual": [
+        {
+          "23055555": 100,
+          "23055556": 100,
+          "23055557": 100,
+          "23055558": 100
+        }
+      ],
+      "Final": [
+        {
+          "23055555": 92,
+          "23055556": 92,
+          "23055557": 92,
+          "23055558": 92
+        }
+      ],
+      "individualFeedback": [
+        {
+          "23055555": "100",
+          "23055556": "100",
+          "23055557": "100",
+          "23055558": "100"
+        }
+      ]
+    }
+  ]
+}]
