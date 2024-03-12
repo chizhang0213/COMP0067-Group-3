@@ -12,7 +12,7 @@
     "65dd0306bb09a1a833ba1c3b",
     "65e0e042dc6ad2d10f3ff4e7"
   ],
-  "academicYear": 2023,
+  "academicYear": 2024,
   "createdLec": "65dd0219bb09a1a833ba1c3a"
 },
 {
@@ -29,4 +29,26 @@
   ],
   "academicYear": 2023,
   "createdLec": "65dd0219bb09a1a833ba1c3a"
+},
+{
+  "_id": {
+    "$oid": "65e98ee6251c0ca6555221e1"
+  },
+  "Lecturers": [],
+  "TAs": [],
+  "academicYear": 2023,
+  "createdLec": "",
+  "moduleNo": "COMP0071",
+  "title": "software engineering"
+},
+{
+  "_id": {
+    "$oid": "65e9c8399fcdab55975b78f4"
+  },
+  "Lecturers": [],
+  "TAs": [],
+  "academicYear": 2023,
+  "createdLec": "",
+  "moduleNo": "COMP0002",
+  "title": "Test Module"
 }]
