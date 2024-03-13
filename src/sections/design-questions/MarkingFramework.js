@@ -11,12 +11,47 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { FormControl, InputLabel, Input, Button} from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import MarkingQuestion from './MarkingCard';
+import MarkingCard from './MarkingCard';
+import IndividualSection from './IndividualSection';
 
 export default function MarkingFramework(){
-    const [selectedValue, setSelectedValue] = useState('');
 
-    const handleChange = (event) => { setSelectedValue(event.target.value);};
+    {/* Group vs Individual dropdown STARTS */}
+    const [selectedValue, setSelectedValue] = useState('');
+    const [dropdownState, setdropdownState] = useState(false);
+    {/*const handleChange = (event) => { setSelectedValue(event.target.value);};*/}
+    const handleChange = (event) => {
+        const value = event.target.value;
+        setSelectedValue(value);
+
+        // Set toggleState based on the selected value
+        if (value === 'option1') {
+            setdropdownState(true); // Enable the Group Section if 'Group' is selected
+        } else if (value === 'option2'){
+            setdropdownState(true); // Enable the Individual Section if 'Individual' is selected
+        } else {
+            setdropdownState(false); // Disable when no value is selected
+        }
+    };
+
+    const handleSectionChange = (event, index) => {
+        // Handle change for elements in row 4: Group vs Individual
+    };
+
+    {/* Group vs Individual dropdown ENDS */}
+
+    // sub weighting toggle 
+    const [toggleState, setToggleState] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const handleToggleChange = (event) => {
+        setToggleState(event.target.checked);
+    };
+
+    const handleSelectChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+    // toggle ends 
 
     const handleBack = () => {
         // Add cancel logic here
@@ -49,8 +84,9 @@ export default function MarkingFramework(){
                 <Grid item xs={6}>
                 </Grid>
 
-                {/* row 2 */}
-                <Grid item xs={1.5}>
+            {/* row 2 */}
+            <Grid container item xs={12} alignItems='flex-end'>
+                <Grid item xs={2}>
                     <Stack spacing={1}>
                         <label htmlFor="title" style={{ color: '#333' }}>
                         Total Weight 
@@ -61,36 +97,58 @@ export default function MarkingFramework(){
                         name="title"
                         InputProps={{
                             endAdornment: <InputAdornment position="end">%</InputAdornment>,
-                          }}
+                        }}
                         />
                     </Stack>
                 </Grid>
-                <Grid item xs={10.5}>
+                <Grid item xs={10}>
+                    <FormControlLabel
+                        control={
+                            <Switch 
+                            color="primary" 
+                            checked={toggleState}
+                            onChange={handleToggleChange}
+                            />
+                        }   
+                        label="sub weighting"
+                        labelPlacement="start"
+                    />
                 </Grid>
+            </Grid>
 
-                {/* row 3 */}
-                <Grid item xs={1.5}>
-                    <Stack spacing={1}>
-                        <label htmlFor="title" style={{ color: '#333' }}>
-                        Type
-                        </label>
-                        <FormControl fullWidth>
-                            <Select
-                                labelId="dropdown-label"
-                                id="dropdown"
-                                value={selectedValue}
-                                onChange={handleChange}
-                            >
-                                <MenuItem value="option1">Group</MenuItem>
-                                <MenuItem value="option2">Individual</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Stack>
-                </Grid>
-                <Grid item xs={10.5}>
-                </Grid>
+            {/* row 3 */}
+            <Grid item xs={2}>
+                <Stack spacing={1}>
+                    <label htmlFor="title" style={{ color: '#333' }}>
+                    Type
+                    </label>
+                    <FormControl fullWidth>
+                        <Select
+                            labelId="dropdown-label"
+                            id="dropdown"
+                            value={selectedValue}
+                            onChange={handleChange}
+                        >
+                            <MenuItem value="option1">Group</MenuItem>
+                            <MenuItem value="option2">Individual</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Stack>
+            </Grid>
+            <Grid item xs={10}>
+            </Grid>
 
-                <MarkingQuestion/>
+                {/* Group vs Individual Section */}
+                {/* Conditionally render row 4-6 or row 5-7 based on dropdownState */}
+                <Grid item xs={12}>
+                    {dropdownState && selectedValue === 'option1' && (
+                        <MarkingCard/>
+                    )}
+                    {dropdownState && selectedValue === 'option2' && (
+                        <IndividualSection/>
+                    )}
+                </Grid>
+                {/* Group vs Individual Section ENDS  */}
 
                 {/* row 4 */}
                 <Grid item xs={9}>
