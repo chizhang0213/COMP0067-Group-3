@@ -1,34 +1,47 @@
-import React from 'react';
+// third-party
 import { FormattedMessage } from 'react-intl';
+
+// assets
 import { PhoneOutlined, RocketOutlined } from '@ant-design/icons';
 
-// Assuming useFetchModules is the custom hook you've created
-import useFetchModules from 'hooks/useFetchModules';
-
+// icons
 const icons = { PhoneOutlined, RocketOutlined };
 
-// Component to generate dynamic modules menu
-const DynamicModulesMenu = () => {
-  const modulesData = useFetchModules(); // Fetch modules data
+// ==============================|| MENU ITEMS - PAGES ||============================== //
 
-  // Dynamically construct children based on fetched modules data
-  const children = modulesData.map(module => ({
-    id: module.moduleNo, // Assuming each module has a unique 'code'
-    title: <FormattedMessage id={module.moduleNo} defaultMessage={module.moduleNo} />, // Using module code as id and module name as default message
-    type: 'item',
-    url: `/moduleNo/academicyear/projects`, // Construct URL based on module code
-    target: true
-  }));
 
-  // Construct the modules object
-  const modules = {
-    id: 'group-pages',
-    title: <FormattedMessage id="modules" defaultMessage="Modules" />,
+const DynamicMenuItems = ({ initialModules }) => {
+  const [modules, setModules] = useState(initialModules || []);
+
+  useEffect(() => {
+    const loadModules = async () => {
+      const modulesData = await useFetchModule();
+      setModules(modulesData);
+    };
+
+    loadModules();
+  }, []);
+
+  // Construct menu items dynamically
+  const modulesMenuItems = {
+    id: 'group-modules',
+    title: <FormattedMessage id="modules" />,
     type: 'group',
-    children
+    children: modules.map((module) => ({
+      id: module.moduleNo, // Assuming `moduleNo` is unique
+      title: <FormattedMessage id={module.moduleNo} defaultMessage={module.title} />,
+      type: 'item',
+      url: `/modules/${module.moduleNo}`,
+      target: true,
+    })),
   };
 
-  return modules; // This example returns the object, but in a real scenario, you might want to use this data in a component directly
+  // Render logic here, or pass `modulesMenuItems` to the component responsible for rendering the menu
+  return (
+    <div>
+      {/* Your rendering logic for the menu based on `modulesMenuItems` */}
+    </div>
+  );
 };
 
-export default DynamicModulesMenu;
+export default DynamicMenuItems
