@@ -4,34 +4,17 @@ import { revalidatePath } from '../../node_modules/next/cache';
 import { redirect } from '../../node_modules/next/navigation';
 import db from 'db/index';
 
-export async function createModule(formState, formData) {
+export async function changeModule(id, formState, formData) {
   try {
-    const createdModule = await db.modules.create({
+    const updatedModule = await db.modules.update({
+      where: { id: id },
       data: {
         moduleNo: formData.get('moduleNo'),
         title: formData.get('title'),
-        Lecturers: [],
-        TAs: [],
-        academicYear: parseInt(formData.get('academicYear')),
-        createdLec: ''
-      }
-    });
-    const course = await db.modules.findFirst({
-      where: {
-        moduleNo: formData.get('moduleNo'),
         academicYear: parseInt(formData.get('academicYear'))
-      },
-      select: {
-        id: true
       }
     });
-    const createdProjects = await db.projects.create({
-      data: {
-        moduleId: course.id,
-        projects: []
-      }
-    });
-    if (createdModule && createdProjects) {
+    if (updatedModule) {
       revalidatePath('/home');
       redirect('/home');
     } else {

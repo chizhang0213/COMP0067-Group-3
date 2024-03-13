@@ -14,4 +14,19 @@
   ],
   "academicYear": 2023,
   "createdLec": "65dd0219bb09a1a833ba1c3a"
+},
+{
+  "_id": {
+    "$oid": "65e6f634286d0e1e136566f7"
+  },
+  "moduleNo": "COMP0001",
+  "title": "Test Module",
+  "Lecturers": [
+    "65dd0219bb09a1a833ba1c3a"
+  ],
+  "TAs": [
+    "65dd0306bb09a1a833ba1c3b"
+  ],
+  "academicYear": 2023,
+  "createdLec": "65dd0219bb09a1a833ba1c3a"
 }]
