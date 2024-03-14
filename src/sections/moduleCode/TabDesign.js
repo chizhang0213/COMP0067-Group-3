@@ -29,13 +29,13 @@ const TabDesign = () => {
   return (
     <>
     <Grid container spacing={2}>
-      {scheme ? (
-        // Render this if marking scheme is defined
+      {/* {scheme ? (
+        // Render this if marking scheme is defined */}
         <SchemeOverview scheme={scheme}/>
-      ) : (
+      {/* ) : (
         // Render this if projects is undefined (still need to modify)
         <p>No marking scheme available.</p>
-      )}
+      )} */}
     </Grid>
     </>
     // <div>

@@ -30,7 +30,7 @@ export default function ShortAnswer(props){
                 <Select 
                     fullWidth 
                     id="input-type"
-                    name='short-ans'
+                    name='shortAns'
                     value={props.input} 
                     onChange={props.inputChange}
                     >

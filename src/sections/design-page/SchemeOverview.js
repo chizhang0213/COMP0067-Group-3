@@ -5,6 +5,13 @@ import { useState } from 'react';
 import MarkingFramework from 'sections/design-questions/MarkingFramework';
 
 export default function SchemeOverview(props){
+    // const defaultValue
+    // {props.scheme ? (
+
+    // ) : (
+
+    // )
+
     const [open, setOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState('');
     const [title, setTitle] = useState('');
@@ -19,7 +26,27 @@ export default function SchemeOverview(props){
     const addCriterion = () => {
         // console.log(index);
         // console.log(props.scheme[index]);
-        setSelectedItem('');
+        let object = {
+            name: '',
+            isDistributed: false,
+            type: '',
+            weight: '',
+            questions:[
+                {
+                    title: '', 
+                    description: '',
+                    qType: 'short-answer', 
+                    marker: 'lec-and-ta', 
+                    isOptional: true,
+                    detail: {
+                        'shortAns': '', 
+                        'dropdown': [''],
+                        'percentage': ''
+                    }
+                }
+            ]
+        }
+        setSelectedItem(object);
         setTitle('Create Marking Criterion');
         setOpen(true);
         // console.log(selectedItem);
@@ -38,8 +65,9 @@ export default function SchemeOverview(props){
 
     return(
         <>
-        {/* <Grid container> */}
-            {props.scheme.map((criterion, index) => (
+        {props.scheme ? (
+            // Render this if marking scheme is defined */}
+            props.scheme.map((criterion, index) => (
                 <Grid item xs={12}>
                     <MainCard key={index}>
                         <Grid container alignItems="center" justifyContent="space-between">
@@ -60,8 +88,16 @@ export default function SchemeOverview(props){
                         </Grid>
                     </MainCard>
                 </Grid>
-                
-            ))}
+            ))
+        ) : (
+            // Render this if projects is undefined (still need to modify)
+            <Grid item xs={12}>
+                <Typography variant="h5" fontWeight="bold">
+                    No marking scheme available.
+                </Typography>
+            </Grid>
+        )}
+            
             <Grid item xs={4}>
                 <Button fullWidth variant="outlined" color="primary" onClick={addCriterion}>+ Add Marking Criterion</Button>
             </Grid>

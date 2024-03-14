@@ -80,7 +80,7 @@ export default function MarkingQuestion(props){
             marker: 'lec-and-ta', 
             isOptional: true,
             detail: {
-                'short-ans': '', 
+                'shortAns': '', 
                 'dropdown': [''],
                 'percentage': ''
             }
