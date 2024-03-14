@@ -14,7 +14,24 @@ import InputAdornment from '@mui/material/InputAdornment';
 import MarkingCard from './MarkingCard';
 import IndividualSection from './IndividualSection';
 
-export default function MarkingFramework(){
+export default function MarkingFramework(props){
+    // for checking if data is right
+    const submit = (e) => {
+        e.preventDefault();
+        console.log(markingCriterion);
+    };
+    // console.log(props.criterion);
+
+    const [markingCriterion, setMarkingCriterion] = useState(props.criterion);
+
+    const handleCriterionChange = (event) => {
+        const updatedData = {
+            ...markingCriterion, // Spread the existing state
+            [event.target.name]: event.target.value // Update the specific field
+        };
+
+        setMarkingCriterion(updatedData);
+    }
 
     {/* Group vs Individual dropdown STARTS */}
     const [selectedValue, setSelectedValue] = useState('');
@@ -25,13 +42,19 @@ export default function MarkingFramework(){
         setSelectedValue(value);
 
         // Set toggleState based on the selected value
-        if (value === 'option1') {
+        if (value === 'Group') {
             setdropdownState(true); // Enable the Group Section if 'Group' is selected
-        } else if (value === 'option2'){
+        } else if (value === 'Individual'){
             setdropdownState(true); // Enable the Individual Section if 'Individual' is selected
         } else {
             setdropdownState(false); // Disable when no value is selected
         }
+        const updatedData = {
+            ...markingCriterion, // Spread the existing state
+            [event.target.name]: event.target.value // Update the specific field
+        };
+
+        setMarkingCriterion(updatedData);
     };
 
     const handleSectionChange = (event, index) => {
@@ -46,6 +69,13 @@ export default function MarkingFramework(){
 
     const handleToggleChange = (event) => {
         setToggleState(event.target.checked);
+        
+        const updatedData = {
+            ...markingCriterion,
+            [event.target.name]: event.target.checked
+        };
+
+        setMarkingCriterion(updatedData);
     };
 
     const handleSelectChange = (event) => {
@@ -66,8 +96,8 @@ export default function MarkingFramework(){
       };
 
     return(
-        <MainCard>
-            <Grid container spacing={3}>
+        <>
+            <Grid container spacing={3} style={{ paddingTop: '10px' }}>
                 {/* row 1 */}
                 <Grid item xs={6}>
                     <Stack spacing={1}>
@@ -75,9 +105,11 @@ export default function MarkingFramework(){
                         Marking Criterion
                         </label>
                         <TextField
-                        type="text"
-                        id="title"
-                        name="title"
+                            type="text"
+                            id="name"
+                            name="name"
+                            onChange={event => handleCriterionChange(event)}
+                            value={markingCriterion.name}
                         />
                     </Stack>
                 </Grid>
@@ -94,10 +126,12 @@ export default function MarkingFramework(){
                         <TextField
                         type="text"
                         id="title"
-                        name="title"
+                        name="weight"
                         InputProps={{
                             endAdornment: <InputAdornment position="end">%</InputAdornment>,
                         }}
+                        onChange={event => handleCriterionChange(event)}
+                        value={markingCriterion.weight}
                         />
                     </Stack>
                 </Grid>
@@ -106,7 +140,8 @@ export default function MarkingFramework(){
                         control={
                             <Switch 
                             color="primary" 
-                            checked={toggleState}
+                            name='isDistributed'
+                            checked={markingCriterion.isDistributed}
                             onChange={handleToggleChange}
                             />
                         }   
@@ -126,11 +161,12 @@ export default function MarkingFramework(){
                         <Select
                             labelId="dropdown-label"
                             id="dropdown"
-                            value={selectedValue}
+                            value={markingCriterion.type}
                             onChange={handleChange}
+                            name='type'
                         >
-                            <MenuItem value="option1">Group</MenuItem>
-                            <MenuItem value="option2">Individual</MenuItem>
+                            <MenuItem value="Group">Group</MenuItem>
+                            <MenuItem value="Individual">Individual</MenuItem>
                         </Select>
                     </FormControl>
                 </Stack>
@@ -141,18 +177,21 @@ export default function MarkingFramework(){
                 {/* Group vs Individual Section */}
                 {/* Conditionally render row 4-6 or row 5-7 based on dropdownState */}
                 <Grid item xs={12}>
-                    {dropdownState && selectedValue === 'option1' && (
+                    {markingCriterion.type === 'Group' && <MarkingCard elements={markingCriterion.questions}/>}
+                    {markingCriterion.type === 'Individual' && <IndividualSection/>}
+                    {/* {dropdownState && selectedValue === 'Group' && (
                         <MarkingCard/>
                     )}
-                    {dropdownState && selectedValue === 'option2' && (
+                    {dropdownState && selectedValue === 'Individual' && (
                         <IndividualSection/>
-                    )}
+                    )} */}
                 </Grid>
                 {/* Group vs Individual Section ENDS  */}
 
                 {/* row 4 */}
                 <Grid item xs={9}>
-                    <Button variant="contained" color="primary" onClick={handleBack}>Back</Button>
+                    {/* <Button variant="contained" color="primary" onClick={handleBack}>Back</Button> */}
+                    <button onClick={submit}>submit</button>
                 </Grid>
                 <Grid item xs={1.5}>
                     <Button variant="contained" color="error" onClick={handleCancel}>Cancel</Button>
@@ -160,8 +199,8 @@ export default function MarkingFramework(){
                 <Grid item xs={1.5}>
                     <Button variant="contained" color="primary" onClick={handleSave}>Save</Button>
                 </Grid>
-            </Grid> 
-        </MainCard>
+            </Grid>
+        </>
     );
 }
 

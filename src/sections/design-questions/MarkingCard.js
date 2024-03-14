@@ -14,7 +14,24 @@ import Paragraph from './Paragraph';
 import Dropdown from './Dropdown';
 import PercentageElement from './PercentageElement';
 
-export default function MarkingQuestion(){
+export default function MarkingQuestion(props){
+    // <Grid item xs={4}>
+    //     <Select 
+    //         fullWidth
+    //         name="qType"
+    //         id="qType" 
+    //         value={element.qType} 
+    //         onChange={event => handleElementsChange(event, index)}
+    //         >
+    //         <MenuItem value="short-answer">Short Answer</MenuItem>
+    //         <MenuItem value="paragraph">Paragraph</MenuItem>
+    //         <Divider/>
+    //         <MenuItem value="dropdown">Dropdown</MenuItem>
+    //         <Divider/>
+    //         {/* Conditionally render the MenuItem based on toggleState */}
+    //         <MenuItem value="percentage" disabled={!toggleState}>Marking Element (with Percentage)</MenuItem>
+    //     </Select>
+    // </Grid>
     const _ = require('lodash');
 
     // for checking if data is right
@@ -23,19 +40,7 @@ export default function MarkingQuestion(){
         console.log(markingElements)
     }
 
-    const [markingElements, setMarkingElements] = useState([
-        {   title: '', 
-            description: '',
-            qType: 'short-answer', 
-            marker: 'lec-and-ta', 
-            isOptional: true,
-            detail: {
-                'short-ans': '', 
-                'dropdown': [''],
-                'percentage': ''
-            }
-        },
-    ])
+    const [markingElements, setMarkingElements] = useState(props.elements);
 
     const handleElementsChange = (event, index) => {
         let data = [...markingElements];
@@ -158,7 +163,7 @@ export default function MarkingQuestion(){
                         <Grid item xs={12}>
                             <Grid container paddingLeft={'10px'} spacing={3}>
                                 {/* Conditional rendering based on selected question type */}
-                                {element.qType === 'short-answer' && <ShortAnswer inputChange={event => handleDetailsChange(event, index)} input={element.detail['short-ans']}/>}
+                                {element.qType === 'short-answer' && <ShortAnswer inputChange={event => handleDetailsChange(event, index)} input={element.detail.shortAns}/>}
                                 {element.qType === 'paragraph' && <Paragraph/>}
                                 {element.qType === 'dropdown' && <Dropdown dropChange={event => handleDropdownChange(event, index)} input={element.detail.dropdown}/>}
                                 {element.qType === 'percentage' && <PercentageElement inputChange={event => handleDetailsChange(event, index)} input={element.detail.percentage}/>}
@@ -202,6 +207,7 @@ export default function MarkingQuestion(){
                                             label="Required"
                                             labelPlacement="start"
                                             sx={{ mr: 1 }}
+                                            checked={!element.isOptional}
                                         />
                                     </Stack>
                                 </Grid>
@@ -212,7 +218,7 @@ export default function MarkingQuestion(){
                 </MainCard>
             )
           })}
-        <button onClick={submit}>submit</button>
+        {/* <button onClick={submit}>submit</button> */}
         
             <Grid item xs={4}>
                 <Button fullWidth variant="outlined" color="primary" onClick={addElement}>+ Add Marking Component</Button>

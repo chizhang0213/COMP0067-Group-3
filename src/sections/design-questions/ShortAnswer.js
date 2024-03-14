@@ -38,7 +38,7 @@ export default function ShortAnswer(props){
                         Select Response Format
                     </MenuItem> */}
                     <MenuItem value="string">Text</MenuItem>
-                    <MenuItem value="integer">Number</MenuItem>
+                    <MenuItem value="float">Number</MenuItem>
                 </Select>
             </Stack>
         </Grid> 
