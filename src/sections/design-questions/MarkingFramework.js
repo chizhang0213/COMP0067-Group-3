@@ -2,14 +2,9 @@
 
 import { Select, Grid, MenuItem, FormControlLabel, Stack, TextField, Switch } from '@mui/material';
 import MainCard from 'components/MainCard';
-import { Divider } from '../../../node_modules/@mui/material/index';
 import { useState } from 'react';
-
-import IconButton from '@mui/material/IconButton';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { FormControl, InputLabel, Input, Button} from '@mui/material';
-import InputAdornment from '@mui/material/InputAdornment';
+import InputAdornment from '@mui/material/InputAdornment'
 
 import MarkingCard from './MarkingCard';
 import IndividualSection from './IndividualSection';
@@ -19,7 +14,7 @@ export default function MarkingFramework(){
     {/* Group vs Individual dropdown STARTS */}
     const [selectedValue, setSelectedValue] = useState('');
     const [dropdownState, setdropdownState] = useState(false);
-    {/*const handleChange = (event) => { setSelectedValue(event.target.value);};*/}
+
     const handleChange = (event) => {
         const value = event.target.value;
         setSelectedValue(value);
@@ -32,10 +27,6 @@ export default function MarkingFramework(){
         } else {
             setdropdownState(false); // Disable when no value is selected
         }
-    };
-
-    const handleSectionChange = (event, index) => {
-        // Handle change for elements in row 4: Group vs Individual
     };
 
     {/* Group vs Individual dropdown ENDS */}
@@ -110,7 +101,7 @@ export default function MarkingFramework(){
                             onChange={handleToggleChange}
                             />
                         }   
-                        label="sub weighting"
+                        label="sub weights"
                         labelPlacement="start"
                     />
                 </Grid>
@@ -139,7 +130,7 @@ export default function MarkingFramework(){
             </Grid>
 
                 {/* Group vs Individual Section */}
-                {/* Conditionally render row 4-6 or row 5-7 based on dropdownState */}
+                {/* Conditionally render Group / Individual based on dropdownState */}
                 <Grid item xs={12}>
                     {dropdownState && selectedValue === 'option1' && (
                         <MarkingCard/>
@@ -150,7 +141,7 @@ export default function MarkingFramework(){
                 </Grid>
                 {/* Group vs Individual Section ENDS  */}
 
-                {/* row 4 */}
+                {/* button row */}
                 <Grid item xs={9}>
                     <Button variant="contained" color="primary" onClick={handleBack}>Back</Button>
                 </Grid>

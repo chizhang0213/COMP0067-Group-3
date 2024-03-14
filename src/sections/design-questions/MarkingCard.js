@@ -178,7 +178,7 @@ export default function MarkingQuestion(){
                                         name='marker'
                                         value={element.marker} 
                                         onChange={event => handleElementsChange(event, index)}
-                                        style={{ width: '250px' }}
+                                        style={{ width: '300px' }}
                                         >
                                         <MenuItem value="lec-and-ta">For Both Lecturers and TAs</MenuItem>
                                         <MenuItem value="lecturer">Only for Lecturers</MenuItem>
