@@ -19,7 +19,7 @@ export default function MarkingFramework(){
         const value = event.target.value;
         setSelectedValue(value);
 
-        // Set toggleState based on the selected value
+        // Set dropdownState based on the selected value
         if (value === 'option1') {
             setdropdownState(true); // Enable the Group Section if 'Group' is selected
         } else if (value === 'option2'){

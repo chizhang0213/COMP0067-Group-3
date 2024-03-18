@@ -1,5 +1,6 @@
 import { Select, Grid, MenuItem, FormControl, InputAdornment, Stack, TextField, Switch } from '@mui/material';
 import { useState } from 'react';
+import {toggleState} from './MarkingFramework';
 
 export default function IndividualSection(){
     
@@ -35,6 +36,7 @@ export default function IndividualSection(){
             
             {(selectedValue === 'overall-contribution' || selectedValue === 'peer-review') && (
                 <>
+                    {toggleState ? (
                     <Grid item xs={1.2}>
                         <Stack spacing={1}>
                             <label htmlFor="title" style={{ color: '#333' }}>
@@ -50,6 +52,24 @@ export default function IndividualSection(){
                             />
                         </Stack>
                     </Grid>
+                    ) : (     
+                        <Grid item xs={1.2} style={{ pointerEvents: 'none', opacity: 0.5 }}>
+                        <Stack spacing={1}>
+                            <label htmlFor="title" style={{ color: '#333' }}>
+                                Subweight
+                            </label>
+                            <TextField
+                                type="text"
+                                id="title"
+                                name="title"
+                                InputProps={{
+                                    endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                                }}
+                                disabled
+                            />
+                </Stack>
+            </Grid>
+        )}
                     <Grid item xs={7}>
                         <TextField
                             fullWidth
