@@ -1,0 +1,388 @@
+[{
+  "_id": {
+    "$oid": "65edc1a0d439e794b8bc2214"
+  },
+  "moduleId": "65e0df9bdc6ad2d10f3ff4e4",
+  "components": [
+    {
+      "name": "Code",
+      "isDistributed": false,
+      "questions": [
+        {
+          "title": "Challenge level of the project",
+          "qType": "dropdown",
+          "isOptional": false,
+          "marker": "ta",
+          "detail": {
+            "dropdown": [
+              "easy",
+              "normal",
+              "hard",
+              "challenging"
+            ],
+            "percentage": "",
+            "shortAns": ""
+          },
+          "description": "Evaluated by TA: easy, normal, hard, challenging"
+        },
+        {
+          "title": "% key functionalities finished",
+          "qType": "short-answer",
+          "isOptional": false,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "",
+            "shortAns": "float"
+          },
+          "description": "Claimed by students in demo slides"
+        },
+        {
+          "title": "% optional functionalities finished",
+          "qType": "short-answer",
+          "isOptional": false,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "",
+            "shortAns": "float"
+          },
+          "description": "Claimed by students in demo slides"
+        },
+        {
+          "title": "% key functionalities assessed",
+          "qType": "short-answer",
+          "isOptional": false,
+          "marker": "ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "",
+            "shortAns": "float"
+          },
+          "description": "Assessed by TA"
+        },
+        {
+          "title": "% optional functionalities assessed",
+          "qType": "short-answer",
+          "isOptional": false,
+          "marker": "ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "",
+            "shortAns": "float"
+          },
+          "description": "Assessed by TA"
+        },
+        {
+          "title": "Requirements completion comments",
+          "qType": "paragraph",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "",
+            "shortAns": ""
+          },
+          "description": "Optional. Please fill in detailed reasons if your assessment differs from students' self-evaluation."
+        },
+        {
+          "title": "Quality of students' solution",
+          "qType": "dropdown",
+          "isOptional": false,
+          "marker": "ta",
+          "detail": {
+            "dropdown": [
+              "basic",
+              "appropriate",
+              "creative",
+              "impressive"
+            ],
+            "percentage": "",
+            "shortAns": ""
+          },
+          "description": "Evaluated by TA: basic, appropriate, creative, impressive"
+        },
+        {
+          "title": "UI (only fill if the project with UI)",
+          "qType": "dropdown",
+          "isOptional": true,
+          "marker": "ta",
+          "detail": {
+            "dropdown": [
+              "uply",
+              "poor",
+              "acceptable",
+              "polished",
+              "impressive"
+            ],
+            "percentage": "",
+            "shortAns": ""
+          },
+          "description": "Assessed by TA: ugly, poor, acceptable, polished, impressive"
+        },
+        {
+          "title": "Critical Bugs",
+          "qType": "dropdown",
+          "isOptional": false,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              "none",
+              "few",
+              "some",
+              "many"
+            ],
+            "percentage": "",
+            "shortAns": ""
+          },
+          "description": "Choose from none, few, some, many"
+        },
+        {
+          "title": "Critical Bug Comments",
+          "qType": "paragraph",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "",
+            "shortAns": ""
+          },
+          "description": "Optional, if you noticed any critical bugs"
+        },
+        {
+          "title": "Minor Bugs",
+          "qType": "dropdown",
+          "isOptional": false,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              "none",
+              "few",
+              "some",
+              "many"
+            ],
+            "percentage": "",
+            "shortAns": ""
+          },
+          "description": "Choose from none, few, some, many"
+        },
+        {
+          "title": "Minor Bug Comments",
+          "qType": "paragraph",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "",
+            "shortAns": ""
+          },
+          "description": "Optional, if you noticed any critical bugs"
+        }
+      ],
+      "weight": 40,
+      "type": "Group"
+    },
+    {
+      "name": "Report",
+      "isDistributed": true,
+      "questions": [
+        {
+          "title": "Home/Introduction",
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "0.5",
+            "shortAns": ""
+          }
+        },
+        {
+          "title": "8 minutes video on the Home page",
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "2",
+            "shortAns": ""
+          }
+        },
+        {
+          "title": "Requirement Analysis",
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "2",
+            "shortAns": ""
+          }
+        },
+        {
+          "title": "Research Carried and Quality of Decisions",
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "3",
+            "shortAns": ""
+          }
+        },
+        {
+          "description": "Input a average mark for project without HCI",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "0.5",
+            "shortAns": ""
+          },
+          "title": "HCI"
+        },
+        {
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "9",
+            "shortAns": ""
+          },
+          "title": "Algorithms (if applicable) or/and Design and Implementation"
+        },
+        {
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "3",
+            "shortAns": ""
+          },
+          "title": "Testing"
+        },
+        {
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "0.5",
+            "shortAns": ""
+          },
+          "title": "Critical Evaluation"
+        },
+        {
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "0.5",
+            "shortAns": ""
+          },
+          "title": "Future work"
+        },
+        {
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "2",
+            "shortAns": ""
+          },
+          "title": "User and Deployment manual"
+        },
+        {
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "1",
+            "shortAns": ""
+          },
+          "title": "Website Organisation and Format"
+        },
+        {
+          "description": "",
+          "placeholder": "Type a number between 0 - 100",
+          "qType": "percentage",
+          "isOptional": true,
+          "marker": "lec-and-ta",
+          "detail": {
+            "dropdown": [
+              ""
+            ],
+            "percentage": "1",
+            "shortAns": ""
+          },
+          "title": "Website Clarity"
+        }
+      ],
+      "weight": 25,
+      "type": "Group"
+    }
+  ]
+}]

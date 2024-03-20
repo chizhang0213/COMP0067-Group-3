@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "65f17280ad4d0bf12e31c555"
+  },
+  "moduleId": "65e0df9bdc6ad2d10f3ff4e4",
+  "teamNo": 1,
+  "projectTitle": "Mobile app and website",
+  "lecMark": {},
+  "TAMark": {
+    "0": {
+      "key": "0-0",
+      "value": "easy",
+      "qType": "dropdown",
+      "title": "Challenge level of the project"
+    },
+    "1": {
+      "key": "0-1",
+      "value": "15",
+      "qType": "short-answer",
+      "title": "% key functionalities finished"
+    },
+    "2": {
+      "key": "0-2",
+      "value": "12",
+      "qType": "short-answer",
+      "title": "% optional functionalities finished"
+    },
+    "3": {
+      "key": "0-5",
+      "value": "asd",
+      "qType": "paragraph",
+      "title": "Requirements completion comments"
+    },
+    "4": {
+      "key": "0-9",
+      "value": "asd",
+      "qType": "paragraph",
+      "title": "Critical Bug Comments"
+    },
+    "5": {
+      "key": "1-0",
+      "value": "100",
+      "qType": "percentage",
+      "title": "Home/Introduction"
+    },
+    "6": {
+      "key": "1-1",
+      "value": "100",
+      "qType": "percentage",
+      "title": "8 minutes video on the Home page"
+    },
+    "7": {
+      "key": "1-2",
+      "value": "100",
+      "qType": "percentage",
+      "title": "Requirement Analysis"
+    }
+  },
+  "individual": [],
+  "TAMarkComponent": {
+    "0": {
+      "key": 0,
+      "total": 39.6,
+      "weight": 40
+    },
+    "1": {
+      "key": 1,
+      "total": 4.5,
+      "weight": 25
+    }
+  }
+}]

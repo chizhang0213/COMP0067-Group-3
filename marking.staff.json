@@ -1,0 +1,50 @@
+[{
+  "_id": {
+    "$oid": "65f186c1ad4d0bf12e31c569"
+  },
+  "firstName": "Tom",
+  "lastName": "Selig",
+  "isActive": true,
+  "userType": "TA",
+  "email": "tom.selig@ucl.ac.uk"
+},
+{
+  "_id": {
+    "$oid": "65f186e4ad4d0bf12e31c56f"
+  },
+  "firstName": "Thomas",
+  "lastName": "Betterman",
+  "isActive": true,
+  "userType": "TA",
+  "email": "thomas.betterman@ucl.ac.uk"
+},
+{
+  "_id": {
+    "$oid": "65f1870dad4d0bf12e31c578"
+  },
+  "firstName": "Ming",
+  "lastName": "He",
+  "isActive": true,
+  "userType": "Lecturer",
+  "email": "ming.he@ucl.ac.uk"
+},
+{
+  "_id": {
+    "$oid": "65f18726ad4d0bf12e31c57c"
+  },
+  "firstName": "John",
+  "lastName": "Wick",
+  "isActive": true,
+  "userType": "Lecturer",
+  "email": "john.wich@ucl.ac.uk"
+},
+{
+  "_id": {
+    "$oid": "65f18744ad4d0bf12e31c581"
+  },
+  "firstName": "Thomas",
+  "lastName": "Selig",
+  "isActive": true,
+  "uerType": "Lecturer",
+  "email": "thomas.selig@ucl.ac.uk"
+}]
