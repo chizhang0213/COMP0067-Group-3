@@ -3,7 +3,7 @@
 import { Select, Grid, MenuItem, FormControlLabel, Stack, TextField, Switch } from '@mui/material';
 import MainCard from 'components/MainCard';
 import { Divider } from '../../../node_modules/@mui/material/index';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -20,9 +20,10 @@ export default function MarkingFramework(props){
         e.preventDefault();
         console.log(markingCriterion);
     };
-    // console.log(props.criterion);
 
     const [markingCriterion, setMarkingCriterion] = useState(props.criterion);
+    const [saveForm, setSaveForm] = useState(false);
+    const [dataToSave, setDataToSave] = useState('');
 
     const handleCriterionChange = (event) => {
         const updatedData = {
@@ -32,6 +33,35 @@ export default function MarkingFramework(props){
 
         setMarkingCriterion(updatedData);
     }
+
+    const handleSave = () => {
+        // Add save logic here
+        setSaveForm(true);
+        // console.log(markingCriterion);
+        // setSaveForm(false);
+    };
+    const updateQuestions = (questions) => {
+        const updatedData = {
+            ...markingCriterion,
+            ['questions']: questions
+        };
+        setDataToSave(updatedData);
+    }
+    useEffect(() => {
+        if (markingCriterion.type === '' && saveForm === true) {
+            const updatedData = {
+                ...markingCriterion,
+            };
+            setDataToSave(updatedData);
+        }
+    }, [saveForm]);
+    useEffect(() => {
+        // console.log(dataToSave);
+        if (dataToSave !== '') {
+            console.log(dataToSave);
+            setSaveForm(false);
+        }
+    }, [dataToSave]);
 
     {/* Group vs Individual dropdown STARTS */}
     const [selectedValue, setSelectedValue] = useState('');
@@ -91,10 +121,6 @@ export default function MarkingFramework(props){
         // Add cancel logic here
       };
 
-    const handleSave = () => {
-        // Add save logic here
-      };
-
     return(
         <>
             <Grid container spacing={3} style={{ paddingTop: '10px' }}>
@@ -102,7 +128,7 @@ export default function MarkingFramework(props){
                 <Grid item xs={6}>
                     <Stack spacing={1}>
                         <label htmlFor="title" style={{ color: '#333' }}>
-                        Marking Criterion
+                        Marking Component
                         </label>
                         <TextField
                             type="text"
@@ -117,8 +143,8 @@ export default function MarkingFramework(props){
                 </Grid>
 
             {/* row 2 */}
-            <Grid container item xs={12} alignItems='flex-end'>
-                <Grid item xs={2}>
+            <Grid container item xs={6} alignItems='flex-end'>
+                <Grid item xs={4}>
                     <Stack spacing={1}>
                         <label htmlFor="title" style={{ color: '#333' }}>
                         Total Weight 
@@ -135,7 +161,7 @@ export default function MarkingFramework(props){
                         />
                     </Stack>
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={8}>
                     <FormControlLabel
                         control={
                             <Switch 
@@ -171,13 +197,20 @@ export default function MarkingFramework(props){
                     </FormControl>
                 </Stack>
             </Grid>
-            <Grid item xs={10}>
-            </Grid>
+            {/* <Grid item xs={10}>
+            </Grid> */}
 
                 {/* Group vs Individual Section */}
                 {/* Conditionally render row 4-6 or row 5-7 based on dropdownState */}
                 <Grid item xs={12}>
-                    {markingCriterion.type === 'Group' && <MarkingCard elements={markingCriterion.questions}/>}
+                    {markingCriterion.type === 'Group' && 
+                        <MarkingCard
+                            elements={markingCriterion.questions} 
+                            subWeighting={markingCriterion.isDistributed}
+                            save={saveForm}
+                            updateQuestions={updateQuestions}
+                        />
+                    }
                     {markingCriterion.type === 'Individual' && <IndividualSection/>}
                     {/* {dropdownState && selectedValue === 'Group' && (
                         <MarkingCard/>

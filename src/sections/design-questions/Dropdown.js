@@ -78,7 +78,7 @@ export default function Dropdown(props){
                 </Grid>
             ))
         )}
-        <Grid item xs={1.5}>
+        <Grid item xs={3}>
             {/* <Stack direction="row" alignItems="center" spacing={1}>
                 <InputLabel htmlFor="add-option">{formFields.length+1}.</InputLabel>
                 <TextField

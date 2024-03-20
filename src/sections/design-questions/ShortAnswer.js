@@ -11,7 +11,7 @@ export default function ShortAnswer(props){
 
     return(
         <>
-        <Grid item xs={4} sx={{ mt: 3 }}>
+        {/* <Grid item xs={4} sx={{ mt: 3 }}>
             <TextField
                 fullWidth
                 id="standard-basic"
@@ -34,14 +34,11 @@ export default function ShortAnswer(props){
                     value={props.input} 
                     onChange={props.inputChange}
                     >
-                    {/* <MenuItem value="" disabled>
-                        Select Response Format
-                    </MenuItem> */}
                     <MenuItem value="string">Text</MenuItem>
                     <MenuItem value="float">Number</MenuItem>
                 </Select>
             </Stack>
-        </Grid> 
+        </Grid>  */}
         </>
         
            

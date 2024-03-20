@@ -47,7 +47,7 @@ export default function SchemeOverview(props){
             ]
         }
         setSelectedItem(object);
-        setTitle('Create Marking Criterion');
+        setTitle('Create Marking Component');
         setOpen(true);
         // console.log(selectedItem);
       };
@@ -55,7 +55,7 @@ export default function SchemeOverview(props){
         // console.log(index);
         // console.log(props.scheme[index]);
         setSelectedItem(props.scheme[index]);
-        setTitle('Edit Marking Criterion')
+        setTitle('Edit Marking Component')
         setOpen(true);
         // console.log(selectedItem);
       };
@@ -68,8 +68,8 @@ export default function SchemeOverview(props){
         {props.scheme ? (
             // Render this if marking scheme is defined */}
             props.scheme.map((criterion, index) => (
-                <Grid item xs={12}>
-                    <MainCard key={index}>
+                <Grid item xs={12} key={index}>
+                    <MainCard>
                         <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item>
                                 <Typography variant="h5" fontWeight="bold">
@@ -118,21 +118,3 @@ export default function SchemeOverview(props){
     );
         
 }
-                                    {/* <Stack direction="row" alignItems="center" spacing={2.4}>
-                                        <IconButton onClick={() => copyElement(index)}>
-                                            <ContentCopyIcon sx={{ fontSize: '22px' }} color="secondary"/>
-                                        </IconButton>
-                                        <IconButton onClick={() => removeElement(index)}>
-                                            <DeleteOutlineIcon sx={{ fontSize: '27px' }} color="secondary"/>
-                                        </IconButton>
-                                        <Divider orientation="vertical" flexItem />
-                                        <FormControlLabel
-                                            name='isOptional'
-                                            // value="start"
-                                            onChange={event => handleElementsChange(event, index)}
-                                            control={<Switch color="primary" />}
-                                            label="Required"
-                                            labelPlacement="start"
-                                            sx={{ mr: 1 }}
-                                        />
-                                    </Stack> */}

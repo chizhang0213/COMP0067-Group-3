@@ -3,7 +3,7 @@
 import { Select, Grid, MenuItem, FormControlLabel, Stack, TextField, Switch, Button } from '@mui/material';
 import MainCard from 'components/MainCard';
 import { Divider } from '../../../node_modules/@mui/material/index';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -43,17 +43,22 @@ export default function MarkingQuestion(props){
     const [markingElements, setMarkingElements] = useState(props.elements);
 
     const handleElementsChange = (event, index) => {
-        let data = [...markingElements];
-        // console.log(event.target.name)
-        // console.log(event.target.value)
-        // console.log(event.target.checked)
+        // console.log(markingElements);
+        // let data = [...markingElements];
 
-        data[index][event.target.name] = event.target.name === 'isOptional' 
-            ? (!event.target.checked)
-            : event.target.value;
-        // console.log(data[index][event.target.name])
+        // data[index][event.target.name] = event.target.name === 'isOptional' 
+        //     ? (!event.target.checked)
+        //     : event.target.value;
 
-        setMarkingElements(data);
+        // setMarkingElements(data);
+
+        setMarkingElements(markingElements => {
+            const data = [...markingElements];
+            data[index][event.target.name] = event.target.name === 'isOptional' 
+                ? !event.target.checked
+                : event.target.value;
+            return data;
+        });
     }
     const handleDetailsChange = (event, index) => {
         let data = [...markingElements];
@@ -64,8 +69,6 @@ export default function MarkingQuestion(props){
     }
     const handleDropdownChange = (drop, index) => {
         let data = [...markingElements];
-
-        // console.log(index)
 
         data[index]['detail']['dropdown'] = drop;
 
@@ -102,55 +105,90 @@ export default function MarkingQuestion(props){
         setMarkingElements(data)
     }
 
+    useEffect(() => {
+        // console.log(props.save);
+        if (props.save === true) {
+          props.updateQuestions(markingElements);
+        }
+      }, [props.save]);      
+
     return(
         <>
-        <Grid container>
+        <Grid container spacing={2}>
         {markingElements.map((element, index) => {
             // if (element.qType === 'short-answer' && element.detail === ''){
             //     element.detail = 'string';
             // }
 
             return (
-                <MainCard key={index}>
+                <Grid item xs={12} key={index}>
+                <MainCard>
                     <Grid container spacing={3}>
                         {/* row 1 */}
-                        <Grid item xs={6}>
+                        <Grid item xs={12}>
+                            <Grid container alignItems="center" justifyContent="space-between"> 
+                                <Grid item>
+                                    <Select 
+                                        fullWidth
+                                        name="qType"
+                                        id="qType" 
+                                        value={element.qType} 
+                                        onChange={event => handleElementsChange(event, index)}
+                                        style={{ width: '240px' }}
+                                        >
+                                        <MenuItem value="short-answer">Short Answer</MenuItem>
+                                        <MenuItem value="paragraph">Paragraph</MenuItem>
+                                        <Divider/>
+                                        <MenuItem value="dropdown">Dropdown</MenuItem>
+                                        <Divider/>
+                                        <MenuItem value="percentage" disabled={!props.subWeighting}>Marking Element (with Percentage)</MenuItem>
+                                    </Select>
+                                </Grid>
+                                <Grid item>
+                                    <Select 
+                                        // fullWidth 
+                                        id="user-type" 
+                                        name='marker'
+                                        value={element.marker} 
+                                        onChange={event => handleElementsChange(event, index)}
+                                        style={{ width: '240px' }}
+                                        >
+                                        <MenuItem value="lec-and-ta">For Both Lecturers and TAs</MenuItem>
+                                        <MenuItem value="lecturer">Only for Lecturers</MenuItem>
+                                        <MenuItem value="ta">Only for TAs</MenuItem>
+                                    </Select>
+                                </Grid>
+                            </Grid>
+                        </Grid> 
+                        
+                        <Grid item xs={12}>
                             <TextField 
                                 fullWidth
                                 name='title'
                                 id="title" 
-                                placeholder="Question Title" 
-                                variant="filled"
+                                // placeholder="Question Title" 
+                                label="Question Title"
+                                variant="standard"
                                 onChange={event => handleElementsChange(event, index)}
                                 value={element.title}
+                                InputProps={{
+                                    style: { paddingLeft: '12px' } // Adjust the paddingLeft as needed
+                                }}
                             />
                         </Grid>
-                        <Grid item xs={2}>
+                        {/* <Grid item xs={2}>
                         </Grid>
                         <Grid item xs={4}>
-                            <Select 
-                                fullWidth
-                                name="qType"
-                                id="qType" 
-                                value={element.qType} 
-                                onChange={event => handleElementsChange(event, index)}
-                                >
-                                <MenuItem value="short-answer">Short Answer</MenuItem>
-                                <MenuItem value="paragraph">Paragraph</MenuItem>
-                                <Divider/>
-                                <MenuItem value="dropdown">Dropdown</MenuItem>
-                                <Divider/>
-                                <MenuItem value="percentage">Marking Element (with Percentage)</MenuItem>
-                            </Select>
-                        </Grid>
+                            
+                        </Grid> */}
 
                         {/* row 2 */}
-                        <Grid item xs={6}>
+                        <Grid item xs={12}>
                             <TextField
                                 fullWidth
                                 name='description'
                                 id="standard-basic"
-                                placeholder="Description"
+                                label="Description"
                                 variant="standard"
                                 onChange={event => handleElementsChange(event, index)}
                                 value={element.description}
@@ -177,18 +215,6 @@ export default function MarkingQuestion(props){
                         <Grid item xs={12}>
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid item>
-                                    <Select 
-                                        fullWidth 
-                                        id="user-type" 
-                                        name='marker'
-                                        value={element.marker} 
-                                        onChange={event => handleElementsChange(event, index)}
-                                        style={{ width: '250px' }}
-                                        >
-                                        <MenuItem value="lec-and-ta">For Both Lecturers and TAs</MenuItem>
-                                        <MenuItem value="lecturer">Only for Lecturers</MenuItem>
-                                        <MenuItem value="ta">Only for TAs</MenuItem>
-                                    </Select>
                                 </Grid>
                                 <Grid item>
                                     <Stack direction="row" alignItems="center" spacing={2.4}>
@@ -216,6 +242,7 @@ export default function MarkingQuestion(props){
                         
                     </Grid>
                 </MainCard>
+                </Grid>
             )
           })}
         {/* <button onClick={submit}>submit</button> */}
