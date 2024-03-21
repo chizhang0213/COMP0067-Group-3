@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { Button, Grid, MenuItem, FormControlLabel, Stack, TextField, Switch } from '@mui/material';
-import MainCard from 'components/MainCard';
 
 import { fetchSchemeByModuleNo } from 'db/queries/moduleNo-scheme';
 import SchemeOverview from 'sections/design-page/SchemeOverview';

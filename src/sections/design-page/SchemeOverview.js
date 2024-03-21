@@ -3,8 +3,12 @@ import { Grid, Typography } from '../../../node_modules/@mui/material/index';
 import MainCard from 'components/MainCard';
 import { useState } from 'react';
 import MarkingFramework from 'sections/design-questions/MarkingFramework';
+import { deleteMarkingComp } from 'actions/delete-marking-comp';
+import { useParams } from 'next/navigation';
 
 export default function SchemeOverview(props){
+    const { academicYear, moduleNo } = useParams();
+    const academicYearInt = parseInt(academicYear);
 
     const [open, setOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState('');
@@ -57,9 +61,15 @@ export default function SchemeOverview(props){
         setTitle('Edit Marking Component')
         setOpen(true);
       };
-    const deleteCriterion = (index) => {
-        console.log(index);
-      };
+    const deleteCriterion = async (index) => {
+        // console.log(index);
+        try {
+            await deleteMarkingComp(index, moduleNo, academicYearInt);
+            props.schemeUpdated(true);
+        } catch (error) {
+            console.error('Error:', error); //
+        }
+    };
 
     return(
         <>
@@ -78,7 +88,7 @@ export default function SchemeOverview(props){
                                 <Stack direction="row" alignItems="center" spacing={2.4}>
                                     {/* need to change color */}
                                     <Button variant="contained" color="primary" onClick={() => editCriterion(index)}>Edit</Button>
-                                    <Button variant="contained" color="primary" onClick={() => deleteCriterion(index)}>Delete</Button>
+                                    <Button variant="contained" color="error" onClick={() => deleteCriterion(index)}>Delete</Button>
                                     {/* <button>Edit</button> 
                                     <button>Delete</button> */}
                                 </Stack>

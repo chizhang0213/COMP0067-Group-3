@@ -1,7 +1,8 @@
 import React from 'react';
+import DropZonePlugin from 'views/dropzone';
 
 const TabUpload = () => {
-  return <div>Projects Tab Content</div>;
+  return <DropZonePlugin />;
 };
 
 export default TabUpload;

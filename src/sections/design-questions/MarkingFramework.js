@@ -41,11 +41,14 @@ export default function MarkingFramework(props){
 
         setMarkingCriterion(updatedData);
     }
+    const handleCancel = () => {
+        // Add cancel logic here
+        props.handleClose();
+      };
 
     const handleSave = () => {
         // Add save logic here
         setSaveForm(true);
-        // console.log(markingCriterion);
         // setSaveForm(false);
     };
     const updateQuestions = (questions) => {
@@ -69,15 +72,15 @@ export default function MarkingFramework(props){
             if (dataToSave !== '') {
                 try {
                     if (props.itemIndex === ''){
-                        console.log('hi');
-                        // await createMarkingScheme(dataToSave, moduleNo, academicYearInt);
+                        // console.log('hi');
+                        await createMarkingScheme(dataToSave, moduleNo, academicYearInt);
                     }else{
                         await updateMarkingComp(props.itemIndex, dataToSave, moduleNo, academicYearInt);
                     }
                     props.schemeUpdated(true);
                     props.handleClose();
                 } catch (error) {
-                    console.error('Error while adding module:', error);
+                    console.error('Error while updating marking scheme:', error);
                 }
                 setSaveForm(false);
             }
@@ -137,10 +140,6 @@ export default function MarkingFramework(props){
     // toggle ends 
 
     const handleBack = () => {
-        // Add cancel logic here
-      };
-
-    const handleCancel = () => {
         // Add cancel logic here
       };
 
@@ -247,7 +246,7 @@ export default function MarkingFramework(props){
                 {/* row 4 */}
                 <Grid item xs={9}>
                     {/* <Button variant="contained" color="primary" onClick={handleBack}>Back</Button> */}
-                    <button onClick={submit}>submit</button>
+                    {/* <button onClick={submit}>submit</button> */}
                 </Grid>
                 <Grid item xs={1.5}>
                     <Button variant="contained" color="error" onClick={handleCancel}>Cancel</Button>
