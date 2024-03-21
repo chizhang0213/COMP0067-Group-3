@@ -5,15 +5,10 @@ import { useState } from 'react';
 import MarkingFramework from 'sections/design-questions/MarkingFramework';
 
 export default function SchemeOverview(props){
-    // const defaultValue
-    // {props.scheme ? (
-
-    // ) : (
-
-    // )
 
     const [open, setOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState('');
+    const [itemIndex, setItemIndex] = useState(''); // The index of selectedItem
     const [title, setTitle] = useState('');
 
     // const handleOpen = () => {
@@ -26,11 +21,14 @@ export default function SchemeOverview(props){
     const addCriterion = () => {
         // console.log(index);
         // console.log(props.scheme[index]);
+        if (props.scheme) {
+            setItemIndex(props.scheme.length);
+        }
         let object = {
             name: '',
             isDistributed: false,
             type: '',
-            weight: '',
+            weight: null,
             questions:[
                 {
                     title: '', 
@@ -49,15 +47,15 @@ export default function SchemeOverview(props){
         setSelectedItem(object);
         setTitle('Create Marking Component');
         setOpen(true);
-        // console.log(selectedItem);
       };
     const editCriterion = (index) => {
         // console.log(index);
         // console.log(props.scheme[index]);
+        // console.log(props.scheme.length);
+        setItemIndex(index);
         setSelectedItem(props.scheme[index]);
         setTitle('Edit Marking Component')
         setOpen(true);
-        // console.log(selectedItem);
       };
     const deleteCriterion = (index) => {
         console.log(index);
@@ -90,7 +88,7 @@ export default function SchemeOverview(props){
                 </Grid>
             ))
         ) : (
-            // Render this if projects is undefined (still need to modify)
+            // Render this if marking scheme is undefined (still need to modify)
             <Grid item xs={12}>
                 <Typography variant="h5" fontWeight="bold">
                     No marking scheme available.
@@ -104,7 +102,7 @@ export default function SchemeOverview(props){
             <Dialog open={open} onClose={handleClose} maxWidth="sm" margin="auto" fullWidth>
                 <DialogTitle>{title}</DialogTitle>
                 <DialogContent>
-                    <MarkingFramework criterion={selectedItem}/>
+                    <MarkingFramework criterion={selectedItem} itemIndex={itemIndex} handleClose={handleClose} schemeUpdated={props.schemeUpdated}/>
                 </DialogContent>
                 <DialogActions>
                     {/* <Button onClick={handleClose}>Cancel</Button>

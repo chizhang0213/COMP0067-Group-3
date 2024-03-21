@@ -4,6 +4,7 @@ import { Select, Grid, MenuItem, FormControlLabel, Stack, TextField, Switch } fr
 import MainCard from 'components/MainCard';
 import { Divider } from '../../../node_modules/@mui/material/index';
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 
 import IconButton from '@mui/material/IconButton';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -13,8 +14,13 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 import MarkingCard from './MarkingCard';
 import IndividualSection from './IndividualSection';
+import { updateMarkingComp } from 'actions/update-marking-comp';
+import { createMarkingScheme } from 'actions/create-marking-scheme';
 
 export default function MarkingFramework(props){
+    const { academicYear, moduleNo } = useParams();
+    const academicYearInt = parseInt(academicYear);
+  
     // for checking if data is right
     const submit = (e) => {
         e.preventDefault();
@@ -28,7 +34,9 @@ export default function MarkingFramework(props){
     const handleCriterionChange = (event) => {
         const updatedData = {
             ...markingCriterion, // Spread the existing state
-            [event.target.name]: event.target.value // Update the specific field
+            [event.target.name]: event.target.name === 'weight' 
+                ? (event.target.value === '' ? null : parseInt(event.target.value))
+                : event.target.value
         };
 
         setMarkingCriterion(updatedData);
@@ -56,11 +64,26 @@ export default function MarkingFramework(props){
         }
     }, [saveForm]);
     useEffect(() => {
-        // console.log(dataToSave);
-        if (dataToSave !== '') {
-            console.log(dataToSave);
-            setSaveForm(false);
-        }
+        const updateComponent = async () => {
+            // console.log(props.itemIndex);
+            if (dataToSave !== '') {
+                try {
+                    if (props.itemIndex === ''){
+                        console.log('hi');
+                        // await createMarkingScheme(dataToSave, moduleNo, academicYearInt);
+                    }else{
+                        await updateMarkingComp(props.itemIndex, dataToSave, moduleNo, academicYearInt);
+                    }
+                    props.schemeUpdated(true);
+                    props.handleClose();
+                } catch (error) {
+                    console.error('Error while adding module:', error);
+                }
+                setSaveForm(false);
+            }
+        };
+    
+        updateComponent(); // Call the async function
     }, [dataToSave]);
 
     {/* Group vs Individual dropdown STARTS */}

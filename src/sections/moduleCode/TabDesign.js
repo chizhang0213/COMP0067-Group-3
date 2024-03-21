@@ -12,6 +12,7 @@ const TabDesign = () => {
   const academicYearInt = parseInt(academicYear);
 
   const [scheme, setScheme] = useState([]);
+  const [schemeUpdated, setSchemeUpdated] = useState(true);
 
   useEffect(() => {
     const fetchScheme = async () => {
@@ -23,15 +24,18 @@ const TabDesign = () => {
       }
     };
 
-    fetchScheme();
-  }, [moduleNo, academicYear]);
+    if (schemeUpdated === true){
+      fetchScheme();
+      setSchemeUpdated(false);
+    }
+  }, [schemeUpdated, moduleNo, academicYear]);
 
   return (
     <>
     <Grid container spacing={2}>
       {/* {scheme ? (
         // Render this if marking scheme is defined */}
-        <SchemeOverview scheme={scheme}/>
+        <SchemeOverview scheme={scheme} schemeUpdated={setSchemeUpdated}/>
       {/* ) : (
         // Render this if projects is undefined (still need to modify)
         <p>No marking scheme available.</p>
