@@ -1,6 +1,20 @@
 [{
   "_id": {
-    "$oid": "65e0e423dc6ad2d10f3ff4ff"
+    "$oid": "65e6f78c286d0e1e13656703"
+  },
+  "projects": [],
+  "moduleId": "6601c492ad3a0946e33293d6"
+},
+{
+  "_id": {
+    "$oid": "65e98f22251c0ca6555221e5"
+  },
+  "moduleId": "6601c476ad3a0946e33293d4",
+  "projects": []
+},
+{
+  "_id": {
+    "$oid": "6601a166f6e9a732fdabd9af"
   },
   "projects": [
     {
@@ -13,7 +27,8 @@
         23055558
       ],
       "TAId": "65f186c1ad4d0bf12e31c569",
-      "leader": 23055555
+      "leader": 23055555,
+      "codeLink": "https://www.google.com/"
     },
     {
       "teamNo": 2,
@@ -22,43 +37,9 @@
         23054858
       ],
       "TAId": "65f186e4ad4d0bf12e31c56f",
-      "leader": 23054858
+      "leader": 23054858,
+      "codeLink": "https://www.google.com/"
     }
   ],
-  "moduleId": "65e0df9bdc6ad2d10f3ff4e4"
-},
-{
-  "_id": {
-    "$oid": "65e6f78c286d0e1e13656703"
-  },
-  "projects": [],
-  "moduleId": "65e6f634286d0e1e136566f7"
-},
-{
-  "_id": {
-    "$oid": "65e98f22251c0ca6555221e5"
-  },
-  "moduleId": "65e98ee6251c0ca6555221e1",
-  "projects": []
-},
-{
-  "_id": {
-    "$oid": "65e9c8539fcdab55975b78f8"
-  },
-  "moduleId": "65e9c8399fcdab55975b78f4",
-  "projects": []
-},
-{
-  "_id": {
-    "$oid": "65f1719c2d7ebb7b116217c8"
-  },
-  "moduleId": "65f1719c2d7ebb7b116217c7",
-  "projects": []
-},
-{
-  "_id": {
-    "$oid": "65f17a396adbe1c860ffcfc9"
-  },
-  "moduleId": "65f17a396adbe1c860ffcfc8",
-  "projects": []
+  "moduleId": "6601c423ad3a0946e33293ce"
 }]

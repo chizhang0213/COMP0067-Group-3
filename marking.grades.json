@@ -1,72 +1,115 @@
 [{
   "_id": {
-    "$oid": "65f17280ad4d0bf12e31c555"
+    "$oid": "6601b02bf6e9a732fdabd9df"
   },
-  "moduleId": "65e0df9bdc6ad2d10f3ff4e4",
+  "moduleId": "6601c423ad3a0946e33293ce",
   "teamNo": 1,
   "projectTitle": "Mobile app and website",
   "lecMark": {},
   "TAMark": {
     "0": {
-      "key": "0-0",
-      "value": "easy",
-      "qType": "dropdown",
-      "title": "Challenge level of the project"
-    },
-    "1": {
-      "key": "0-1",
-      "value": "15",
-      "qType": "short-answer",
-      "title": "% key functionalities finished"
-    },
-    "2": {
-      "key": "0-2",
-      "value": "12",
-      "qType": "short-answer",
-      "title": "% optional functionalities finished"
-    },
-    "3": {
-      "key": "0-5",
-      "value": "asd",
-      "qType": "paragraph",
-      "title": "Requirements completion comments"
-    },
-    "4": {
-      "key": "0-9",
-      "value": "asd",
-      "qType": "paragraph",
-      "title": "Critical Bug Comments"
-    },
-    "5": {
       "key": "1-0",
-      "value": "100",
+      "value": "0",
       "qType": "percentage",
       "title": "Home/Introduction"
     },
-    "6": {
+    "1": {
       "key": "1-1",
-      "value": "100",
+      "value": "1",
       "qType": "percentage",
       "title": "8 minutes video on the Home page"
     },
-    "7": {
+    "2": {
       "key": "1-2",
       "value": "100",
       "qType": "percentage",
       "title": "Requirement Analysis"
+    },
+    "3": {
+      "key": "1-3",
+      "value": "100",
+      "qType": "percentage",
+      "title": "Research Carried and Quality of Decisions"
+    },
+    "4": {
+      "key": "1-4",
+      "value": "100",
+      "qType": "percentage",
+      "title": "HCI"
+    },
+    "5": {
+      "key": "1-5",
+      "value": "100",
+      "qType": "percentage",
+      "title": "Algorithms (if applicable) or/and Design and Implementation"
+    },
+    "6": {
+      "key": "1-6",
+      "value": "100",
+      "qType": "percentage",
+      "title": "Testing"
+    },
+    "7": {
+      "key": "1-7",
+      "value": "100",
+      "qType": "percentage",
+      "title": "Critical Evaluation"
+    },
+    "8": {
+      "key": "1-8",
+      "value": "100",
+      "qType": "percentage",
+      "title": "Future work"
+    },
+    "9": {
+      "key": "1-9",
+      "value": "100",
+      "qType": "percentage",
+      "title": "User and Deployment manual"
+    },
+    "10": {
+      "key": "1-10",
+      "value": "100",
+      "qType": "percentage",
+      "title": "Website Organisation and Format"
+    },
+    "11": {
+      "key": "1-11",
+      "value": "100",
+      "qType": "percentage",
+      "title": "Website Clarity"
     }
   },
-  "individual": [],
   "TAMarkComponent": {
     "0": {
       "key": 0,
-      "total": 39.6,
+      "total": 40,
       "weight": 40
     },
     "1": {
       "key": 1,
-      "total": 4.5,
+      "total": 22.52,
       "weight": 25
     }
-  }
+  },
+  "lecMarkComponent": {},
+  "TAMarkIndividual": {
+    "0": {
+      "studentId": 23055555,
+      "score": "89"
+    },
+    "1": {
+      "studentId": 23055556,
+      "score": "90"
+    },
+    "2": {
+      "studentId": 23055557,
+      "score": "78"
+    },
+    "3": {
+      "studentId": 23055558,
+      "score": "78"
+    }
+  },
+  "lecMarkIndividual": {}
 }]

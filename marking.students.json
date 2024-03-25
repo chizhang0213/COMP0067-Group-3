@@ -6,18 +6,7 @@
   "firstName": "Chi",
   "lastName": "Zhang",
   "email": "ucabc38@ucl.ac.uk",
-  "photo": {
-    "$binary": {
-      "base64": "",
-      "subType": "00"
-    }
-  },
-  "modules": [
-    {
-      "moduleID": "65e0df9bdc6ad2d10f3ff4e4",
-      "index": 1
-    }
-  ]
+  "photo": ""
 },
 {
   "_id": {
@@ -27,18 +16,7 @@
   "firstName": "Anshan",
   "lastName": "Handgun",
   "email": "anshan.handgun@ucl.ac.uk",
-  "photo": {
-    "$binary": {
-      "base64": "",
-      "subType": "00"
-    }
-  },
-  "modules": [
-    {
-      "moduleID": "65e0df9bdc6ad2d10f3ff4e4",
-      "index": 2
-    }
-  ]
+  "photo": ""
 },
 {
   "_id": {
@@ -48,18 +26,7 @@
   "firstName": "William",
   "lastName": "Smith",
   "email": "william.smith@ucl.ac.uk",
-  "photo": {
-    "$binary": {
-      "base64": "",
-      "subType": "00"
-    }
-  },
-  "modules": [
-    {
-      "moduleID": "65e0df9bdc6ad2d10f3ff4e4",
-      "index": 3
-    }
-  ]
+  "photo": ""
 },
 {
   "_id": {
@@ -69,18 +36,7 @@
   "firstName": "Jingya",
   "lastName": "Chen",
   "email": "jingya.chen@ucl.ac.uk",
-  "photo": {
-    "$binary": {
-      "base64": "",
-      "subType": "00"
-    }
-  },
-  "modules": [
-    {
-      "moduleID": "65e0df9bdc6ad2d10f3ff4e4",
-      "index": 4
-    }
-  ]
+  "photo": ""
 },
 {
   "_id": {
@@ -90,16 +46,5 @@
   "firstName": "James",
   "lastName": "Brown",
   "email": "james.brown@ucl.ac.uk",
-  "photo": {
-    "$binary": {
-      "base64": "",
-      "subType": "00"
-    }
-  },
-  "modules": [
-    {
-      "moduleID": "65e0df9bdc6ad2d10f3ff4e4",
-      "index": 5
-    }
-  ]
+  "photo": ""
 }]
