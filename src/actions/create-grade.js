@@ -10,8 +10,13 @@ function processComponents() {
   const lecMark = {};
   const TAMarkComponent = {};
   const lecMarkComponent = {};
+  const TAMarkIndividual = {};
+  const lecMarkIndividual = {};
+  const TAMarkFinal = {};
+  const lecMarkFinal = {};
+  const peerReview = {};
 
-  return { TAMark, lecMark, TAMarkComponent, lecMarkComponent };
+  return { TAMark, lecMark, TAMarkComponent, lecMarkComponent, TAMarkIndividual, lecMarkIndividual, TAMarkFinal, lecMarkFinal, peerReview };
 }
 
 export async function createGrade(moduleId, teamNo) {
@@ -28,17 +33,24 @@ export async function createGrade(moduleId, teamNo) {
 
   const project = await fetchProjectByTeamNo(course.moduleNo, academicYearInt, teamNoInt);
 
-  const { TAMark, lecMark, TAMarkComponent, lecMarkComponent } = processComponents();
+  const { TAMark, lecMark, TAMarkComponent, lecMarkComponent, TAMarkIndividual, lecMarkIndividual, TAMarkFinal, lecMarkFinal, peerReview } =
+    processComponents();
 
   const createdProject = await db.grades.create({
     data: {
       moduleId: moduleId,
       teamNo: teamNoInt,
       projectTitle: project.projectTitle,
+      status: 'processing',
       TAMark,
       lecMark,
       TAMarkComponent,
-      lecMarkComponent
+      lecMarkComponent,
+      TAMarkIndividual,
+      lecMarkIndividual,
+      TAMarkFinal,
+      lecMarkFinal,
+      peerReview
     }
   });
 
