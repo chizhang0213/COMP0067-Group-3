@@ -7,17 +7,6 @@ datasource db {
   url      = "mongodb://localhost:27017/marking"
 }
 
-type GradesScore {
-  /// Nested objects had no data in the sample dataset to introspect a nested type.
-  TAMark       Json
-  /// Could not determine type: the field only had null or empty values in the sample set.
-  individual   Json?
-  /// Nested objects had no data in the sample dataset to introspect a nested type.
-  lecMark      Json
-  projectTitle String
-  teamNo       Int
-}
-
 type ProjectsProjects {
   TAId         String
   codeLink     String
@@ -36,15 +25,13 @@ type SchemeComponents {
 }
 
 type SchemeComponentsQuestions {
-  description  String?
-  detail       SchemeComponentsQuestionsDetail?
-  isOptional   Boolean
-  isTAEvaluate Boolean?
-  marker       String?
-  placeholder  String?
-  qType        String
-  text         String?
-  title        String?
+  description String
+  detail      SchemeComponentsQuestionsDetail?
+  isOptional  Boolean
+  marker      String
+  placeholder String?
+  qType       String
+  title       String
 }
 
 type SchemeComponentsQuestionsDetail {
@@ -63,9 +50,28 @@ model admin {
 }
 
 model grades {
-  id       String        @id @default(auto()) @map("_id") @db.ObjectId
-  moduleId String
-  score    GradesScore[]
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  TAMark            Json
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  TAMarkComponent   Json
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  TAMarkFinal       Json
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  TAMarkIndividual  Json
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  lecMark           Json
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  lecMarkComponent  Json
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  lecMarkFinal      Json
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  lecMarkIndividual Json
+  moduleId          String
+  /// Nested objects had no data in the sample dataset to introspect a nested type.
+  peerReview        Json
+  projectTitle      String
+  teamNo            Int
 }
 
 model modules {
@@ -108,4 +114,8 @@ model students {
   lastName  String
   photo     Bytes?
   uclId     Int
+}
+
+model user {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 }
