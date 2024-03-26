@@ -8,9 +8,11 @@ import { Button, FormHelperText, Grid, Stack, Typography } from '@mui/material';
 // project imports
 import Page from 'components/Page';
 import MainCard from 'components/MainCard';
-import UploadAvatar from 'components/third-party/dropzone/Avatar';
-import UploadSingleFile from 'components/third-party/dropzone/SingleFile';
-import UploadMultiFile from 'components/third-party/dropzone/MultiFile';
+import UploadAvatar from 'sections/dropzone/Avatar';
+import UploadSingleFile from 'sections/dropzone/SingleFile';
+import UploadMultiFile from 'sections/dropzone/MultiFile';
+import ProcessFile from 'actions/dropzone/process-files';
+import ProcessImages from 'actions/dropzone/process-images';
 
 // third-party
 import { Formik } from 'formik';
@@ -19,11 +21,12 @@ import IconButton from 'components/@extended/IconButton';
 
 // assets
 import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
+import StudentPicUpload from 'sections/dropzone/StudentPhotoUpload';
 
 // ==============================|| PLUGINS - DROPZONE ||============================== //
 
 const DropzonePage = () => {
-  const [list, setList] = useState(false);
+  const [list, setList] = useState(true);
 
   return (
     <Page title="Dropzone">
@@ -31,13 +34,52 @@ const DropzonePage = () => {
         <Grid item xs={12}>
           <MainCard
             title="Reset Project Data"
+          >
+            <Formik
+              initialValues={{ files: null }}
+              onSubmit={() => {
+                // submit form
+              }}
+              validationSchema={yup.object().shape({
+                files: yup.mixed().required('Avatar is a required.')
+              })}
+            >
+              {({ values, handleSubmit, setFieldValue, touched, errors }) => (
+                <form onSubmit={handleSubmit}>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                      <Stack spacing={1.5} alignItems="center">
+                        <UploadMultiFile
+                          showList={false}
+                          setFieldValue={setFieldValue}
+                          files={values.files}
+                          error={touched.files && !!errors.files}
+                          onUpload={ProcessFile}
+                        />
+                      </Stack>
+                      {touched.files && errors.files && (
+                        <FormHelperText error id="standard-weight-helper-text-password-login">
+                          {errors.files}
+                        </FormHelperText>
+                      )}
+                    </Grid>
+                  </Grid>
+                </form>
+              )}
+            </Formik>
+          </MainCard>
+        </Grid>
+
+        <Grid item xs={12}>
+          <MainCard
+            title="Upload Student Pictures"
             secondary={
               <Stack direction="row" alignItems="center" spacing={1.25}>
-                <IconButton color={list ? 'secondary' : 'primary'} size="small" onClick={() => setList(false)}>
-                  <UnorderedListOutlined style={{ fontSize: '1.15rem' }} />
-                </IconButton>
                 <IconButton color={list ? 'primary' : 'secondary'} size="small" onClick={() => setList(true)}>
                   <AppstoreOutlined style={{ fontSize: '1.15rem' }} />
+                </IconButton>
+                <IconButton color={list ? 'secondary' : 'primary'} size="small" onClick={() => setList(false)}>
+                  <UnorderedListOutlined style={{ fontSize: '1.15rem' }} />
                 </IconButton>
               </Stack>
             }
@@ -56,11 +98,12 @@ const DropzonePage = () => {
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
                       <Stack spacing={1.5} alignItems="center">
-                        <UploadMultiFile
+                        <StudentPicUpload
                           showList={list}
                           setFieldValue={setFieldValue}
                           files={values.files}
                           error={touched.files && !!errors.files}
+                          onUpload={ProcessImages}
                         />
                       </Stack>
                       {touched.files && errors.files && (
@@ -75,36 +118,7 @@ const DropzonePage = () => {
             </Formik>
           </MainCard>
         </Grid>
-        {/* <Grid item xs={12}>
-          <MainCard title="Upload Single File">
-            <Formik
-              initialValues={{ files: null }}
-              onSubmit={() => {
-                // submit form
-              }}
-              validationSchema={yup.object().shape({
-                files: yup.mixed().required('Avatar is a required.')
-              })}
-            >
-              {({ values, handleSubmit, setFieldValue, touched, errors }) => (
-                <form onSubmit={handleSubmit}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                      <Stack spacing={1.5} alignItems="center">
-                        <UploadSingleFile setFieldValue={setFieldValue} file={values.files} error={touched.files && !!errors.files} />
-                        {touched.files && errors.files && (
-                          <FormHelperText error id="standard-weight-helper-text-password-login">
-                            {errors.files}
-                          </FormHelperText>
-                        )}
-                      </Stack>
-                    </Grid>
-                  </Grid>
-                </form>
-              )}
-            </Formik>
-          </MainCard>
-        </Grid> */}
+
         <Grid item xs={12}>
           <MainCard title="Upload Student Pictures">
             <Formik
@@ -128,7 +142,8 @@ const DropzonePage = () => {
                               Allowed &lsquo;image/*&rsquo;
                             </Typography>
                             <Typography align="center" variant="caption" color="secondary">
-                              *.png, *.jpeg, *.jpg, *.gif
+                              *.png, *.jpeg
+                              {/* , *.jpg, *.gif */}
                             </Typography>
                           </Stack>
                         </Stack>

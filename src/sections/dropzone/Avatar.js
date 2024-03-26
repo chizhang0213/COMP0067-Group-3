@@ -64,7 +64,7 @@ const AvatarUpload = ({ error, file, setFieldValue, sx }) => {
     accept: {
       'image/*': []
     },
-    multiple: false,
+    multiple: true,
     onDrop: (acceptedFiles) => {
       setFieldValue(
         'files',

@@ -12,6 +12,8 @@ import RejectionFiles from './RejectionFiles';
 import PlaceholderContent from './PlaceholderContent';
 import FilesPreview from './FilesPreview';
 
+import { useParams } from 'next/navigation';
+
 const DropzoneWrapper = styled('div')(({ theme }) => ({
   outline: 'none',
   padding: theme.spacing(5, 1),
@@ -23,9 +25,15 @@ const DropzoneWrapper = styled('div')(({ theme }) => ({
 
 // ==============================|| UPLOAD - MULTIPLE FILE ||============================== //
 
-const MultiFileUpload = ({ error, showList = false, files, type, setFieldValue, sx, onUpload }) => {
+const StudentPhotoUpload = ({ error, showList = false, files, type, setFieldValue, sx, onUpload }) => {
+  const { academicYear, moduleNo } = useParams();
+  const academicYearInt = parseInt(academicYear);
+
   const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
     multiple: true,
+    accept: {
+      'image/*': []
+    },
     onDrop: (acceptedFiles) => {
       if (files) {
         setFieldValue('files', [
@@ -103,8 +111,8 @@ const MultiFileUpload = ({ error, showList = false, files, type, setFieldValue, 
           <Button color="inherit" size="small" onClick={onRemoveAll}>
             Remove all
           </Button>
-          <Button size="small" variant="contained" onClick={onUpload}>
-            Upload files
+          <Button size="small" variant="contained" onClick={() => onUpload(files, moduleNo, academicYearInt)}>
+            Upload file
           </Button>
         </Stack>
       )}
@@ -112,7 +120,7 @@ const MultiFileUpload = ({ error, showList = false, files, type, setFieldValue, 
   );
 };
 
-MultiFileUpload.propTypes = {
+StudentPhotoUpload.propTypes = {
   error: PropTypes.bool,
   showList: PropTypes.bool,
   files: PropTypes.array,
@@ -122,4 +130,4 @@ MultiFileUpload.propTypes = {
   type: PropTypes.string
 };
 
-export default MultiFileUpload;
+export default StudentPhotoUpload;

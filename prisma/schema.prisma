@@ -20,6 +20,7 @@ type GradesScore {
 
 type ProjectsProjects {
   TAId         String
+  codeLink     String
   leader       Int
   projectTitle String
   teamMember   Int[]
@@ -27,30 +28,29 @@ type ProjectsProjects {
 }
 
 type SchemeComponents {
-  fraction      Int
   isDistributed Boolean
   name          String
   questions     SchemeComponentsQuestions[]
+  type          String
+  weight        Int?
 }
 
 type SchemeComponentsQuestions {
   description  String?
-  /// Multiple data types found: Float: 33.3%, Int: 66.7% out of 12 sampled entries
-  fraction     Json?
-  isOptional   Boolean?
+  detail       SchemeComponentsQuestionsDetail?
+  isOptional   Boolean
   isTAEvaluate Boolean?
-  options      String[]
+  marker       String?
   placeholder  String?
-  text         String
-  type         String
+  qType        String
+  text         String?
+  title        String?
 }
 
-model TAs {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  email     String
-  firstName String
-  isActive  Boolean
-  lastName  String
+type SchemeComponentsQuestionsDetail {
+  dropdown   String[]
+  percentage String
+  shortAns   String
 }
 
 model admin {
@@ -68,14 +68,6 @@ model grades {
   score    GradesScore[]
 }
 
-model lecturers {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  email     String
-  firstName String
-  isActive  Boolean
-  lastName  String
-}
-
 model modules {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   Lecturers    String[]
@@ -83,6 +75,7 @@ model modules {
   academicYear Int
   createdLec   String
   moduleNo     String
+  students     Int[]
   title        String
 }
 
@@ -98,11 +91,21 @@ model scheme {
   moduleId   String
 }
 
+model staff {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  firstName String?
+  isActive  Boolean
+  lastName  String?
+  uerType   String?
+  userType  String?
+}
+
 model students {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
   email     String
   firstName String
   lastName  String
-  photo     String
+  photo     Bytes?
   uclId     Int
 }

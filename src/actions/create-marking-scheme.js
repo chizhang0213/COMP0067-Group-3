@@ -3,7 +3,7 @@
 import db from 'db/index';
 
 export async function createMarkingScheme(compData, moduleNo, academicYear) {
-    console.log(academicYear);
+    // console.log(academicYear);
     const course = await db.modules.findFirst({
         where: {
           moduleNo: moduleNo,

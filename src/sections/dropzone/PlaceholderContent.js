@@ -21,14 +21,14 @@ export default function PlaceholderContent({ type }) {
         >
           <CardMedia component="img" image={UploadCover} sx={{ width: 150 }} />
           <Stack sx={{ p: 3 }} spacing={1}>
-            <Typography variant="h5">Drag & Drop or Select file</Typography>
+            <Typography variant="h5">Upload an excel file (.xlsx) containing project information</Typography>
 
             <Typography color="secondary">
-              Drop files here or click&nbsp;
-              <Typography component="span" color="primary" sx={{ textDecoration: 'underline' }}>
+              Drop files here or click to navigate through files on your machine
+              {/* <Typography component="span" color="primary" sx={{ textDecoration: 'underline' }}>
                 browse
               </Typography>
-              &nbsp;thorough your machine
+              &nbsp;thorough your machine */}
             </Typography>
           </Stack>
         </Stack>

@@ -1,40 +1,25 @@
-'use client';
+'use client'
 
-import MarkingFramework from 'sections/design-questions/MarkingFramework';
-import { useState } from 'react';
-import { Select, Grid, MenuItem, FormControlLabel, Stack, TextField, Switch } from '@mui/material';
+import React, { useState } from 'react';
+import { fetchStudentPhoto } from './fetchPhoto';
 
-export default function DesignQ(){
-    const [name, setName] = useState({
-        name: 'h',
-    });
+export default function Accept(props) {
+    const [photo, setPhoto] = useState('');
 
-    const handleNameChange = (event) => {
-        const updatedName = {
-            ...name, // Spread the existing state
-            [event.target.name]: event.target.value // Update the specific field
-        };
-
-        setName(updatedName);
+    const callFunction = async () => {
+        const photo = await fetchStudentPhoto('');
+        const imageUrl = `data:image/jpeg;base64,${photo}`;
+        setPhoto(imageUrl);
     }
-
-    const submit = (e) => {
-        e.preventDefault();
-        console.log(name);
-    };
-
+  
     return (
         <>
-        <TextField
-                type="text"
-                id="name"
-                name="name"
-                onChange={event => handleNameChange(event)}
-                value={name.name}
-            />
-        <button onClick={submit}>submit</button>
+        <button onClick={callFunction}>Student</button>
+        <div>
+            <h2>Image Preview</h2>
+            <img src={photo} alt="Base64 Image" />
+        </div>
         </>
-
-    )
-    // return <MarkingFramework/>;
-}
+    );
+  }
+  
