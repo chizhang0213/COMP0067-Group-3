@@ -21,7 +21,7 @@ import IconButton from 'components/@extended/IconButton';
 
 // assets
 import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
-import StudentPicUpload from 'sections/dropzone/StudentPhotoUpload';
+import StudentPhotoUpload from 'sections/dropzone/StudentPhotoUpload';
 
 // ==============================|| PLUGINS - DROPZONE ||============================== //
 
@@ -98,7 +98,7 @@ const DropzonePage = () => {
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
                       <Stack spacing={1.5} alignItems="center">
-                        <StudentPicUpload
+                        <StudentPhotoUpload
                           showList={list}
                           setFieldValue={setFieldValue}
                           files={values.files}

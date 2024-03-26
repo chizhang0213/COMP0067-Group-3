@@ -5,7 +5,7 @@ import db from 'db/index';
 export async function fetchStudentPhoto(prop) {
   const student = await db.students.findFirst({
     where: {
-      uclId: 23055555
+      uclId: 40502012
     }
   });
   const buffer = Uint8Array.from(student.photo);
