@@ -71,6 +71,7 @@ model grades {
   /// Nested objects had no data in the sample dataset to introspect a nested type.
   peerReview        Json
   projectTitle      String
+  status            String
   teamNo            Int
 }
 

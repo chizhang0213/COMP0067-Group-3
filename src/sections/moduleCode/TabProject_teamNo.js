@@ -28,6 +28,7 @@ import { fetchStudentsByUCLId } from 'db/queries/teamMember-students';
 import { fetchLeaderByUCLId } from 'db/queries/uclId-leader';
 import { fetchSchemeByModuleId } from 'db/queries/moduleId-scheme';
 import { fetchGradeByModuleId } from 'db/queries/moduleId-grade';
+import { changeStatus } from 'actions/change-status';
 
 // assets
 import { UserOutlined, ReadOutlined, QuestionCircleOutlined } from '@ant-design/icons';
@@ -39,6 +40,7 @@ import { changeGrade } from 'actions/change-grade';
 
 const TabProfile = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
   const [project, setProject] = useState({});
   const [team, setTeam] = useState([]);
   const [leader, setLeader] = useState({});
@@ -46,7 +48,9 @@ const TabProfile = () => {
   const [module, setModule] = useState({});
   const [inputScores, setInputScores] = useState([]);
   const [moduleTotals, setModuleTotals] = useState([]);
+  const [peerReviews, setPeerReviews] = useState([]);
   const [individualScores, setIndividualScores] = useState([]);
+  const [individualContributions, setIndividualContributions] = useState([]);
   const [finalScores, setFinalScores] = useState([]);
   const [moduleInputs, setModuleInputs] = useState({});
   const { moduleNo, academicYear, teamNo } = useParams();
@@ -134,6 +138,18 @@ const TabProfile = () => {
 
         setModuleTotals(initialModuleTotals);
 
+        const peerReviewsData = fetchedGrade.peerReview;
+        const peerReviewsArray = Object.keys(peerReviewsData).map((key) => peerReviewsData[key]);
+
+        setPeerReviews(peerReviewsArray);
+
+        const initialIndividualContributions = Object.values(fetchedGrade.TAMarkIndividual).map((item) => ({
+          studentId: item.studentId,
+          contribution: item.contribution
+        }));
+
+        setIndividualContributions(initialIndividualContributions);
+
         const initialIndividualScores = Object.values(fetchedGrade.TAMarkIndividual).map((item) => ({
           studentId: item.studentId,
           score: item.score
@@ -154,6 +170,9 @@ const TabProfile = () => {
 
     fetchGradeAndInitializeStates();
   }, []);
+
+  console.log('个人贡献', individualContributions);
+  console.log('个人得分', individualScores);
 
   useEffect(() => {
     if (groupScore && individualScores.length > 0) {
@@ -207,15 +226,63 @@ const TabProfile = () => {
     setIndividualScores(updatedScores);
   };
 
+  const handlePeerReviewChange = (reviewerId, revieweeId, score) => {
+    const newPeerReviews = [...peerReviews];
+    const index = newPeerReviews.findIndex((pr) => pr.reviewer === reviewerId && pr.reviewee === revieweeId);
+    if (index !== -1) {
+      newPeerReviews[index].score = score;
+    } else {
+      newPeerReviews.push({ reviewer: reviewerId, reviewee: revieweeId, score });
+    }
+    setPeerReviews(newPeerReviews);
+  };
+
+  const handleIndividualContributionChange = (studentId, newContribution) => {
+    setIndividualContributions((prevContributions) => {
+      const updatedContributions = [...prevContributions];
+      const index = updatedContributions.findIndex((contribution) => contribution.studentId === studentId);
+      if (index !== -1) {
+        updatedContributions[index].contribution = newContribution;
+      } else {
+        updatedContributions.push({ studentId, contribution: newContribution });
+      }
+      return updatedContributions;
+    });
+  };
+
   const handleSave = async () => {
     try {
-      changeGrade(module.id, teamNo, inputScores, moduleTotals, individualScores, finalScores);
+      changeGrade(module.id, teamNo, inputScores, moduleTotals, individualScores, individualContributions, finalScores, peerReviews);
       console.log('Saving data');
-
-      setOpenSnackbar(true);
+      setSnackbarMessage('Save successfully');
     } catch (error) {
       console.error('Error saving data:', error);
+      setSnackbarMessage('Save failed');
     }
+    setOpenSnackbar(true);
+  };
+
+  const handleFinalise = () => {
+    let allFilled = true;
+    scheme.forEach((component, componentIndex) => {
+      component.questions.forEach((question, questionIndex) => {
+        if (!question.isOptional || question.qType === 'percentage') {
+          const key = `${componentIndex}-${questionIndex}`; // 使用索引构建 key
+          const inputRecord = inputScores.find((input) => input.key === key);
+          if (!inputRecord || inputRecord.value === '') {
+            console.log(`Empty required field: ${key}`);
+            allFilled = false;
+          }
+        }
+      });
+    });
+    if (allFilled) {
+      changeStatus(module.id, teamNo, 'Finished');
+      setSnackbarMessage('Finalise successfully');
+    } else {
+      setSnackbarMessage('Finalise failed: Some required fields are empty');
+    }
+    setOpenSnackbar(true);
   };
 
   const findInputValue = (key) => {
@@ -314,11 +381,11 @@ const TabProfile = () => {
                 <Button variant="contained" color="primary" style={{ marginRight: '15px' }} onClick={handleSave}>
                   Save
                 </Button>
-                <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)} message="Save successfully" />
+                <Button variant="contained" color="warning" style={{ marginRight: '15px' }} onClick={handleFinalise}>
+                  Finalise
+                </Button>
+                <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)} message={snackbarMessage} />
               </div>
-              <Button variant="contained" color="warning" style={{ marginRight: '15px' }}>
-                Finalise
-              </Button>
             </Grid>
           </Grid>
           {scheme.map((component, componentIndex) => (
@@ -338,6 +405,9 @@ const TabProfile = () => {
                     <Grid container key={questionIndex} alignItems="center" spacing={2}>
                       <Grid item xs={5} style={{ textAlign: 'left', paddingLeft: '10%', paddingTop: '3%' }}>
                         <Typography variant="h5" style={{ fontWeight: 'normal' }}>
+                          {(!question.isOptional || question.qType === 'percentage') && (
+                            <span style={{ color: 'red', marginRight: '4px' }}>*</span>
+                          )}
                           {question.title}
                           {question.qType === 'percentage' && <strong>{` (${question.detail.percentage}%)`}</strong>}
                           {': '}
@@ -451,7 +521,7 @@ const TabProfile = () => {
                             <Grid item xs={3}></Grid>
                             <Grid item xs={9}>
                               <Typography variant="h5" align="center">
-                                Overall % contreibution from demo slide
+                                Overall % of contribution from demo slide
                               </Typography>
                             </Grid>
                           </Grid>
@@ -466,6 +536,8 @@ const TabProfile = () => {
                                 <TextField
                                   fullWidth
                                   variant="outlined"
+                                  value={individualContributions.find((s) => s.studentId === member.uclId)?.contribution || ''}
+                                  onChange={(e) => handleIndividualContributionChange(member.uclId, e.target.value)}
                                   placeholder="Enter number of percentage"
                                   InputLabelProps={{
                                     shrink: true
@@ -495,19 +567,16 @@ const TabProfile = () => {
                             Peer Review
                           </Typography>
                         </Grid>
-                        {/* Title */}
                         <Grid item xs={12}>
-                          <Grid container spacing={2} justifyContent="center">
-                            {/* Reviewer/Reviewee*/}
+                          <Grid container spacing={2} justifyContent="left">
                             <Grid item xs={3}>
                               <Typography align="center" style={{ fontWeight: 'bold' }}>
                                 Reviewer\Reviewee
                               </Typography>
                             </Grid>
-                            {/* Student */}
                             {team.map((member, index) => (
                               <Grid item xs={2} key={index}>
-                                <Typography align="right">{'Student ' + (index + 1)}</Typography>
+                                <Typography align="center">{'Student ' + (index + 1)}</Typography>
                               </Grid>
                             ))}
                           </Grid>
@@ -515,7 +584,7 @@ const TabProfile = () => {
                         {team.map((reviewer, reviewerIndex) => (
                           <Grid item xs={12} key={reviewerIndex}>
                             <Grid container spacing={2} alignItems="center">
-                              <Grid item xs={4}>
+                              <Grid item xs={3}>
                                 <Typography variant="h6" align="center">
                                   {'Student ' + (reviewerIndex + 1)}
                                 </Typography>
@@ -525,6 +594,11 @@ const TabProfile = () => {
                                   <TextField
                                     fullWidth
                                     variant="outlined"
+                                    value={
+                                      peerReviews.find((pr) => pr.reviewer === reviewer.uclId && pr.reviewee === reviewee.uclId)?.score ||
+                                      ''
+                                    }
+                                    onChange={(e) => handlePeerReviewChange(reviewer.uclId, reviewee.uclId, e.target.value)}
                                     placeholder={'Score'}
                                     InputLabelProps={{
                                       shrink: true
@@ -554,8 +628,8 @@ const TabProfile = () => {
                   <Grid container spacing={2}>
                     {/* Title */}
                     <Grid item xs={12}>
-                      <Grid container spacing={2} justifyContent="center">
-                        <Grid item xs={2}></Grid>
+                      <Grid container spacing={2} justifyContent="left">
+                        <Grid item xs={3}></Grid>
                         {/* Student */}
                         {team.map((member, index) => (
                           <Grid item xs={2} key={index}>
