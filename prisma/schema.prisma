@@ -27,22 +27,29 @@ type ProjectsProjects {
 }
 
 type SchemeComponents {
-  fraction      Int
   isDistributed Boolean
   name          String
   questions     SchemeComponentsQuestions[]
+  type          String
+  weight        Int?
 }
 
 type SchemeComponentsQuestions {
   description  String?
-  /// Multiple data types found: Float: 33.3%, Int: 66.7% out of 12 sampled entries
-  fraction     Json?
-  isOptional   Boolean?
+  detail       SchemeComponentsQuestionsDetail?
+  isOptional   Boolean
   isTAEvaluate Boolean?
-  options      String[]
+  marker       String?
   placeholder  String?
-  text         String
-  type         String
+  qType        String
+  text         String?
+  title        String?
+}
+
+type SchemeComponentsQuestionsDetail {
+  dropdown   String[]
+  percentage String
+  shortAns   String
 }
 
 model TAs {
@@ -53,13 +60,15 @@ model TAs {
   lastName  String
 }
 
-model admin {
+model admin_ {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
   email     String
   firstName String
   lastName  String
   password  String
   username  String
+
+  @@map("admin ")
 }
 
 model grades {
@@ -86,10 +95,12 @@ model modules {
   title        String
 }
 
-model projects {
+model projects_ {
   id       String             @id @default(auto()) @map("_id") @db.ObjectId
   moduleId String
   projects ProjectsProjects[]
+
+  @@map("projects ")
 }
 
 model scheme {

@@ -269,14 +269,14 @@ const AuthLogin = ({ providers, csrfToken }) => {
             color="success"
             onClick={() =>
               signIn('login', {
-                redirect: true,
-                emial: 'info@codethemes.com',
+                redirect: true, 
+                email: 'info@codethemes.com', 
                 password: '123456',
                 callbackUrl: APP_DEFAULT_PATH
               })
             }
           >
-            UCL SSO Login
+            UCL Single Sign On 
           </Button>
         </AnimateButton>
       </Grid>
