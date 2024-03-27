@@ -1,0 +1,50 @@
+[{
+  "_id": {
+    "$oid": "65e0a6307044a2bc5de6f41d"
+  },
+  "uclId": 23054858,
+  "firstName": "Chi",
+  "lastName": "Zhang",
+  "email": "ucabc38@ucl.ac.uk",
+  "photo": ""
+},
+{
+  "_id": {
+    "$oid": "65e0e196dc6ad2d10f3ff4f0"
+  },
+  "uclId": 23055555,
+  "firstName": "Anshan",
+  "lastName": "Handgun",
+  "email": "anshan.handgun@ucl.ac.uk",
+  "photo": ""
+},
+{
+  "_id": {
+    "$oid": "65e0e1bcdc6ad2d10f3ff4f2"
+  },
+  "uclId": 23055556,
+  "firstName": "William",
+  "lastName": "Smith",
+  "email": "william.smith@ucl.ac.uk",
+  "photo": ""
+},
+{
+  "_id": {
+    "$oid": "65e0e1dbdc6ad2d10f3ff4f4"
+  },
+  "uclId": 23055557,
+  "firstName": "Jingya",
+  "lastName": "Chen",
+  "email": "jingya.chen@ucl.ac.uk",
+  "photo": ""
+},
+{
+  "_id": {
+    "$oid": "65e0e1f8dc6ad2d10f3ff4f6"
+  },
+  "uclId": 23055558,
+  "firstName": "James",
+  "lastName": "Brown",
+  "email": "james.brown@ucl.ac.uk",
+  "photo": ""
+}]
