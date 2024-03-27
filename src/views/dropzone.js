@@ -119,7 +119,7 @@ const DropzonePage = () => {
           </MainCard>
         </Grid>
 
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <MainCard title="Upload Student Pictures">
             <Formik
               initialValues={{ files: null }}
@@ -143,7 +143,7 @@ const DropzonePage = () => {
                             </Typography>
                             <Typography align="center" variant="caption" color="secondary">
                               *.png, *.jpeg
-                              {/* , *.jpg, *.gif */}
+                              , *.jpg, *.gif
                             </Typography>
                           </Stack>
                         </Stack>
@@ -169,7 +169,7 @@ const DropzonePage = () => {
               )}
             </Formik>
           </MainCard>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Page>
   );

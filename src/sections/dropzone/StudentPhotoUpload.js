@@ -9,7 +9,7 @@ import { useDropzone } from 'react-dropzone';
 
 // project import
 import RejectionFiles from './RejectionFiles';
-import PlaceholderContent from './PlaceholderContent';
+import PhotoPlaceholder from './PhotoPlaceholder';
 import FilesPreview from './FilesPreview';
 
 import { useParams } from 'next/navigation';
@@ -94,7 +94,7 @@ const StudentPhotoUpload = ({ error, showList = false, files, type, setFieldValu
             }}
           >
             <input {...getInputProps()} />
-            <PlaceholderContent type={type} />
+            <PhotoPlaceholder type={type} />
           </DropzoneWrapper>
           {type === 'STANDARD' && files && files.length > 1 && (
             <Button variant="contained" color="error" size="extraSmall" onClick={onRemoveAll}>

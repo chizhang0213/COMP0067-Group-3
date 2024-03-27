@@ -21,7 +21,7 @@ type SchemeComponents {
   name          String
   questions     SchemeComponentsQuestions[]
   type          String
-  weight        Int?
+  weight        Int
 }
 
 type SchemeComponentsQuestions {
@@ -115,8 +115,4 @@ model students {
   lastName  String
   photo     Bytes?
   uclId     Int
-}
-
-model user {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
 }
